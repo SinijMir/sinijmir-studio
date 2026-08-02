@@ -1,0 +1,82 @@
+<header class="site-header" aria-label="Основная навигация">
+  <a class="brand" href="/" aria-label="SinijMir Studio — главная">
+    <span class="brand-mark" aria-hidden="true">S</span>
+    <span>SinijMir <strong>Studio</strong></span>
+  </a>
+
+  <div class="build-status">
+    <span aria-hidden="true"></span>
+    Студия цифровых продуктов
+  </div>
+</header>
+
+<style>
+  .site-header {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .brand strong {
+    color: var(--color-accent-bright);
+    font-weight: 600;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(102, 179, 255, 0.42);
+    border-radius: 11px;
+    color: #fff;
+    background: linear-gradient(145deg, #1684ff, #0b4eac);
+    box-shadow: 0 10px 35px rgba(33, 136, 255, 0.26);
+    font-size: 0.9rem;
+  }
+
+  .build-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .build-status span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #37c987;
+    box-shadow: 0 0 14px rgba(55, 201, 135, 0.8);
+  }
+
+  @media (max-width: 560px) {
+    .site-header {
+      min-height: 58px;
+    }
+
+    .build-status {
+      max-width: 112px;
+      justify-content: flex-end;
+      text-align: right;
+      font-size: 0.58rem;
+      line-height: 1.35;
+    }
+  }
+</style>

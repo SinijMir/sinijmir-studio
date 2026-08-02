@@ -1,17 +1,32 @@
 ---
-
+import SiteHeader from '../components/global/SiteHeader.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import TechnologyLine from '../components/home/TechnologyLine.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <main class="page-shell">
+    <SiteHeader />
+    <HeroSection />
+    <TechnologyLine />
+  </main>
+</BaseLayout>
+
+<style>
+  .page-shell {
+    width: min(calc(100% - 48px), var(--container));
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 24px 0 28px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  @media (max-width: 560px) {
+    .page-shell {
+      width: min(calc(100% - 32px), var(--container));
+      padding-top: 14px;
+    }
+  }
+</style>

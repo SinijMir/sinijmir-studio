@@ -1,0 +1,68 @@
+:root {
+  color-scheme: dark;
+  --color-bg: #05070d;
+  --color-surface: rgba(15, 20, 34, 0.72);
+  --color-surface-strong: #101727;
+  --color-border: rgba(148, 163, 184, 0.18);
+  --color-text: #f7f9fc;
+  --color-text-muted: #9aa7bb;
+  --color-accent: #2188ff;
+  --color-accent-bright: #66b3ff;
+  --color-accent-soft: rgba(33, 136, 255, 0.13);
+  --container: 1180px;
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 32px;
+  --shadow-glow: 0 24px 90px rgba(0, 102, 255, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at 82% 12%, rgba(22, 110, 255, 0.16), transparent 30rem),
+    radial-gradient(circle at 14% 82%, rgba(0, 82, 204, 0.1), transparent 27rem),
+    var(--color-bg);
+  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  color: #fff;
+  background: rgba(33, 136, 255, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
