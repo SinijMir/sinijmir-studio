@@ -1,5 +1,6 @@
 ---
 import ContactActions from '../contact/ContactActions.astro';
+import Send from '@lucide/astro/icons/send';
 import { projectBriefPrompts, telegramContact } from '../../config/contact';
 ---
 
@@ -45,7 +46,7 @@ import { projectBriefPrompts, telegramContact } from '../../config/contact';
 
       <aside class="contact-panel" aria-label="Связаться с SinijMir Studio">
         <div class="telegram-head">
-          <span class="telegram-mark" aria-hidden="true">TG</span>
+          <span class="telegram-mark" aria-hidden="true"><Send size={23} stroke-width="1.8" /></span>
           <div>
             <span>{telegramContact.service}</span>
             <strong>{telegramContact.handle}</strong>
@@ -56,7 +57,7 @@ import { projectBriefPrompts, telegramContact } from '../../config/contact';
 
         <ContactActions />
 
-        <small>Telegram остаётся основным каналом. На мобильном кнопка звонка откроет приложение телефона.</small>
+        <small>Telegram остаётся основным каналом. Телефон и email доступны как дополнительные способы связи.</small>
       </aside>
     </div>
   </div>
@@ -220,9 +221,6 @@ import { projectBriefPrompts, telegramContact } from '../../config/contact';
     color: #fff;
     background: rgba(35, 145, 225, 0.24);
     box-shadow: 0 16px 44px rgba(33, 136, 255, 0.22);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
   }
 
   .telegram-head div {

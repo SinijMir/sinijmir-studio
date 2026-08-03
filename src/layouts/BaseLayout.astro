@@ -34,6 +34,7 @@ const socialImageUrl = toPublicUrl(socialImagePath);
 const baseUrl = import.meta.env.BASE_URL;
 const faviconSvgUrl = `${baseUrl}favicon.svg`;
 const faviconIcoUrl = `${baseUrl}favicon.ico`;
+const yandexVerification = import.meta.env.PUBLIC_YANDEX_VERIFICATION?.trim();
 const jsonLd = serializeStructuredData(
   buildStructuredData({
     title,
@@ -52,6 +53,7 @@ const jsonLd = serializeStructuredData(
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
+    {yandexVerification && <meta name="yandex-verification" content={yandexVerification} />}
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#05070d" />
     <meta property="og:type" content="website" />

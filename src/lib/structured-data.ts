@@ -1,3 +1,4 @@
+import { emailContact, phoneContact, telegramContact } from '../config/contact';
 import { siteConfig, toPublicUrl } from '../config/site';
 
 export type PageType = 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
@@ -22,6 +23,7 @@ export function buildStructuredData({
   const canonicalUrl = toPublicUrl(path);
   const organizationId = `${homeUrl}#organization`;
   const websiteId = `${homeUrl}#website`;
+  const telephone = phoneContact.href.replace('tel:', '');
 
   return {
     '@context': 'https://schema.org',
@@ -34,7 +36,9 @@ export function buildStructuredData({
         description: siteConfig.description,
         url: homeUrl,
         logo: toPublicUrl(siteConfig.logoPath),
-        sameAs: [siteConfig.telegramUrl],
+        telephone,
+        email: emailContact.handle,
+        sameAs: [telegramContact.href, siteConfig.githubUrl],
       },
       {
         '@type': 'WebSite',

@@ -1,5 +1,10 @@
 ---
-import { phoneContact, telegramContact } from '../../config/contact';
+import {
+  contactChannels,
+  phoneContact,
+  telegramContact,
+} from '../../config/contact';
+import ContactIcon from './ContactIcon.astro';
 
 interface Props {
   telegramLabel?: string;
@@ -9,12 +14,27 @@ const { telegramLabel = telegramContact.buttonLabel } = Astro.props;
 ---
 
 <div class="contact-options">
-  <div class="phone-direct">
-    <span>{phoneContact.service}</span>
-    <a href={phoneContact.href} aria-label={`Позвонить по номеру ${phoneContact.handle}`}>
-      {phoneContact.handle}
-    </a>
-  </div>
+  <ul class="contact-details" aria-label="Контактные данные SinijMir Studio">
+    {
+      contactChannels.map((channel) => (
+        <li>
+          <a
+            href={channel.href}
+            target={channel.external ? '_blank' : undefined}
+            rel={channel.external ? 'noreferrer' : undefined}
+            aria-label={`${channel.service}: ${channel.handle}`}
+          >
+            <ContactIcon type={channel.type} />
+            <span class="contact-copy">
+              <small>{channel.service}</small>
+              <strong>{channel.handle}</strong>
+            </span>
+            {channel.external && <span class="external" aria-hidden="true">↗</span>}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 
   <div class="contact-actions">
     <a
@@ -43,28 +63,57 @@ const { telegramLabel = telegramContact.buttonLabel } = Astro.props;
     margin-top: auto;
   }
 
-  .phone-direct {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    margin-bottom: 14px;
-    padding: 0 4px;
+  .contact-details {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 18px;
+    padding: 0;
+    list-style: none;
   }
 
-  .phone-direct span {
+  .contact-details a {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 10px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 180ms ease, background 180ms ease;
+  }
+
+  .contact-details a:hover {
+    border-color: rgba(132, 204, 255, 0.22);
+    background: rgba(35, 117, 190, 0.1);
+  }
+
+  .contact-copy {
+    min-width: 0;
+    display: grid;
+    gap: 3px;
+  }
+
+  .contact-copy small {
     color: #8397af;
-    font-size: 0.6rem;
+    font-size: 0.57rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
   }
 
-  .phone-direct a {
+  .contact-copy strong {
+    overflow-wrap: anywhere;
     color: #e8f2ff;
-    font-size: 0.9rem;
+    font-size: 0.86rem;
     font-weight: 650;
-    text-decoration: none;
+  }
+
+  .external {
+    margin-left: auto;
+    color: var(--color-accent-bright);
+    font-size: 0.88rem;
   }
 
   .contact-actions {
@@ -113,18 +162,12 @@ const { telegramLabel = telegramContact.buttonLabel } = Astro.props;
   }
 
   .action:focus-visible,
-  .phone-direct a:focus-visible {
+  .contact-details a:focus-visible {
     outline: 3px solid rgba(132, 204, 255, 0.55);
     outline-offset: 4px;
   }
 
   @media (max-width: 520px) {
-    .phone-direct {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 6px;
-    }
-
     .contact-actions {
       grid-template-columns: 1fr;
     }

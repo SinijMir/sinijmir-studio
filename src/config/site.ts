@@ -12,6 +12,7 @@ export const siteConfig = {
   socialImagePath: '/og.png',
   socialImageAlt: 'SinijMir Studio — Mobile, AI, Automation',
   telegramUrl: 'https://t.me/sinijmir',
+  githubUrl: 'https://github.com/SinijMir',
 } as const;
 
 export function toPublicUrl(path = '/'): string {

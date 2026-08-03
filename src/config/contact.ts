@@ -31,7 +31,18 @@ export const phoneContact: ContactChannel = {
   primary: false,
 };
 
-export const contactChannels = [telegramContact, phoneContact] as const;
+export const emailContact: ContactChannel = {
+  id: 'email-primary',
+  type: 'email',
+  service: 'Email',
+  handle: 'sinijmir@gmail.com',
+  href: 'mailto:sinijmir@gmail.com',
+  buttonLabel: 'Написать на email',
+  external: false,
+  primary: false,
+};
+
+export const contactChannels = [telegramContact, phoneContact, emailContact] as const;
 
 export const projectBriefPrompts = [
   'Что вы хотите создать или улучшить',
