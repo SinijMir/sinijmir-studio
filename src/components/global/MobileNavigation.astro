@@ -45,6 +45,8 @@ import { contactLink, navigationItems } from '../../config/navigation';
       const backdrop = menu.querySelector<HTMLButtonElement>('.menu-backdrop');
       const links = menu.querySelectorAll('a');
 
+      const getFocusableElements = () => [summary, ...links].filter(Boolean) as HTMLElement[];
+
       const closeMenu = (restoreFocus = false) => {
         menu.removeAttribute('open');
         if (restoreFocus) summary?.focus();
@@ -55,13 +57,34 @@ import { contactLink, navigationItems } from '../../config/navigation';
         summary?.setAttribute('aria-expanded', String(isOpen));
         summary?.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
         document.documentElement.classList.toggle('mobile-menu-open', isOpen);
+
+        if (isOpen) requestAnimationFrame(() => links.item(0)?.focus());
       });
 
       backdrop?.addEventListener('click', () => closeMenu(true));
       links.forEach((link) => link.addEventListener('click', () => closeMenu()));
 
       document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && menu.open) closeMenu(true);
+        if (!menu.open) return;
+
+        if (event.key === 'Escape') {
+          closeMenu(true);
+          return;
+        }
+
+        if (event.key !== 'Tab') return;
+
+        const focusableElements = getFocusableElements();
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements.at(-1);
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement?.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement?.focus();
+        }
       });
 
       window.matchMedia('(min-width: 901px)').addEventListener('change', (event) => {

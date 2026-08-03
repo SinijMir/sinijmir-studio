@@ -20,7 +20,6 @@ const directions = ['Мобильные приложения', 'Telegram-бот�
         href={telegramContact.href}
         target="_blank"
         rel="noreferrer"
-        aria-label="Написать SinijMir Studio в Telegram"
       >
         Написать в Telegram
         <span aria-hidden="true">↗</span>
@@ -32,7 +31,7 @@ const directions = ['Мобильные приложения', 'Telegram-бот�
         <a class="brand" href={homeHref} aria-label="SinijMir Studio — главная">
           <span class="brand-mark" aria-hidden="true">
             <img
-              src="/branding/sinijmir-mark.png"
+              src="/branding/sinijmir-mark-160.png"
               alt=""
               width="48"
               height="48"
@@ -74,7 +73,7 @@ const directions = ['Мобильные приложения', 'Telegram-бот�
     <div class="footer-bottom">
       <p>© {currentYear} SinijMir Studio</p>
       <FooterLegalLinks />
-      <a href="#top" aria-label="Вернуться в начало страницы">
+      <a href="#top">
         Наверх
         <span aria-hidden="true">↑</span>
       </a>
@@ -141,7 +140,7 @@ const directions = ['Мобильные приложения', 'Telegram-бот�
   }
 
   .footer-cta > a:hover {
-    background: #3595ff;
+    background: var(--color-accent-hover);
     transform: translateY(-2px);
   }
 

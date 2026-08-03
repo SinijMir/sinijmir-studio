@@ -14,7 +14,7 @@ const projects = await getPublishedProjects();
 ---
 
 <BaseLayout>
-  <main data-project-count={projects.length}>
+  <main id="main-content" tabindex="-1" data-project-count={projects.length}>
     <div class="intro-shell">
       <SiteHeader />
       <HeroSection />
