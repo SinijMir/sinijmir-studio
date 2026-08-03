@@ -1,4 +1,5 @@
 ---
+import FooterLegalLinks from './FooterLegalLinks.astro';
 import { telegramContact } from '../../config/contact';
 import { navigationItems } from '../../config/navigation';
 
@@ -72,7 +73,7 @@ const directions = ['Мобильные приложения', 'Telegram-бот�
 
     <div class="footer-bottom">
       <p>© {currentYear} SinijMir Studio</p>
-      <p>Independent product studio</p>
+      <FooterLegalLinks />
       <a href="#top" aria-label="Вернуться в начало страницы">
         Наверх
         <span aria-hidden="true">↑</span>

@@ -1,0 +1,39 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<nav class="legal-links" aria-label="Служебные страницы">
+  <a href={`${baseUrl}contact/`}>Контакты</a>
+  <a href={`${baseUrl}privacy/`}>Конфиденциальность</a>
+</nav>
+
+<style>
+  .legal-links {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  a {
+    color: #65738a;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--color-accent-bright);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--color-accent-bright);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 620px) {
+    .legal-links {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>

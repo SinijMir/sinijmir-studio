@@ -7,10 +7,10 @@ export interface NavigationItem {
 }
 
 export const navigationItems: NavigationItem[] = [
-  { label: 'Услуги', href: '/#services' },
+  { label: 'Услуги', href: '/services/' },
   { label: 'Проекты', href: '/#projects' },
   { label: 'Как работаем', href: '/#process' },
-  { label: 'О студии', href: '/#about' },
+  { label: 'О студии', href: '/about/' },
 ];
 
 export const contactLink: NavigationItem = {
