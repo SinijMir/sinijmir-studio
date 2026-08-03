@@ -1,5 +1,7 @@
 import { telegramContact } from './contact';
 
+const baseUrl = import.meta.env.BASE_URL;
+
 export interface NavigationItem {
   label: string;
   href: string;
@@ -7,10 +9,10 @@ export interface NavigationItem {
 }
 
 export const navigationItems: NavigationItem[] = [
-  { label: 'Услуги', href: '/services/' },
-  { label: 'Проекты', href: '/#projects' },
-  { label: 'Как работаем', href: '/#process' },
-  { label: 'О студии', href: '/about/' },
+  { label: 'Услуги', href: `${baseUrl}services/` },
+  { label: 'Проекты', href: `${baseUrl}#projects` },
+  { label: 'Как работаем', href: `${baseUrl}#process` },
+  { label: 'О студии', href: `${baseUrl}about/` },
 ];
 
 export const contactLink: NavigationItem = {

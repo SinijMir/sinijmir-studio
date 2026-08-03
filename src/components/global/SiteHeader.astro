@@ -1,13 +1,16 @@
 ---
 import DesktopNavigation from './DesktopNavigation.astro';
 import MobileNavigation from './MobileNavigation.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+const logoUrl = `${baseUrl}branding/sinijmir-mark-160.png`;
 ---
 
 <header class="site-header" aria-label="Основная навигация">
-  <a class="brand" href="/" aria-label="SinijMir Studio — главная">
+  <a class="brand" href={baseUrl} aria-label="SinijMir Studio — главная">
     <span class="brand-mark" aria-hidden="true">
       <img
-        src="/branding/sinijmir-mark-160.png"
+        src={logoUrl}
         alt=""
         width="40"
         height="40"

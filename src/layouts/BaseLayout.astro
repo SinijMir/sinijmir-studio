@@ -31,6 +31,9 @@ const {
 
 const canonicalUrl = toPublicUrl(canonicalPath);
 const socialImageUrl = toPublicUrl(socialImagePath);
+const baseUrl = import.meta.env.BASE_URL;
+const faviconSvgUrl = `${baseUrl}favicon.svg`;
+const faviconIcoUrl = `${baseUrl}favicon.ico`;
 const jsonLd = serializeStructuredData(
   buildStructuredData({
     title,
@@ -69,8 +72,8 @@ const jsonLd = serializeStructuredData(
     <meta name="twitter:image" content={socialImageUrl} />
     <meta name="twitter:image:alt" content={socialImageAlt} />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={faviconSvgUrl} />
+    <link rel="icon" href={faviconIcoUrl} />
     <title>{title}</title>
     <script type="application/ld+json" set:html={jsonLd}></script>
   </head>
