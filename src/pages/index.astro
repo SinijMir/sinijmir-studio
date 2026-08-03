@@ -5,10 +5,13 @@ import ProcessSection from '../components/home/ProcessSection.astro';
 import ServicesSection from '../components/home/ServicesSection.astro';
 import TechnologyLine from '../components/home/TechnologyLine.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPublishedProjects } from '../lib/projects';
+
+const projects = await getPublishedProjects();
 ---
 
 <BaseLayout>
-  <main>
+  <main data-project-count={projects.length}>
     <div class="intro-shell">
       <SiteHeader />
       <HeroSection />
