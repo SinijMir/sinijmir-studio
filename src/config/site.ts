@@ -4,10 +4,13 @@ export const siteConfig = {
   description:
     'Студия мобильной разработки, AI-интеграций, Telegram-ботов и автоматизации.',
   language: 'ru-RU',
+  locale: 'ru_RU',
   origin: 'https://sinijmir.github.io',
   basePath: '/sinijmir-studio',
   publicUrl: 'https://sinijmir.github.io/sinijmir-studio',
   logoPath: '/branding/sinijmir-mark.png',
+  socialImagePath: '/og.png',
+  socialImageAlt: 'SinijMir Studio — Mobile, AI, Automation',
   telegramUrl: 'https://t.me/sinijmir',
 } as const;
 
