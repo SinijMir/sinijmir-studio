@@ -1,6 +1,9 @@
+import { telegramContact } from './contact';
+
 export interface NavigationItem {
   label: string;
   href: string;
+  external?: boolean;
 }
 
 export const navigationItems: NavigationItem[] = [
@@ -11,6 +14,7 @@ export const navigationItems: NavigationItem[] = [
 ];
 
 export const contactLink: NavigationItem = {
-  label: 'Обсудить проект',
-  href: '/#contact',
+  label: telegramContact.buttonLabel,
+  href: telegramContact.href,
+  external: true,
 };

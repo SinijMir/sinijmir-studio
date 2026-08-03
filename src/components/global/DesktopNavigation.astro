@@ -9,7 +9,12 @@ import { contactLink, navigationItems } from '../../config/navigation';
     ))}
   </ul>
 
-  <a class="contact-link" href={contactLink.href}>
+  <a
+    class="contact-link"
+    href={contactLink.href}
+    target={contactLink.external ? '_blank' : undefined}
+    rel={contactLink.external ? 'noreferrer' : undefined}
+  >
     {contactLink.label}
     <span aria-hidden="true">↗</span>
   </a>

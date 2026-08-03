@@ -1,0 +1,313 @@
+---
+import { projectBriefPrompts, telegramContact } from '../../config/contact';
+---
+
+<section class="contact-section" id="contact" aria-labelledby="contact-title">
+  <div class="contact-inner">
+    <div class="section-intro">
+      <p class="section-label"><span>06</span> / Contact</p>
+
+      <div class="intro-copy">
+        <h2 id="contact-title">
+          Есть задача?<br />
+          Давайте <em>обсудим проект.</em>
+        </h2>
+        <p>
+          Опишите идею, существующую проблему или нужный результат. Для первого сообщения не требуется готовое техническое
+          задание — начнём с контекста и следующих шагов.
+        </p>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="brief-panel">
+        <div class="panel-head">
+          <span>Короткий бриф</span>
+          <span>Необязательно отвечать на всё</span>
+        </div>
+
+        <ol>
+          {
+            projectBriefPrompts.map((prompt, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <p>{prompt}</p>
+              </li>
+            ))
+          }
+        </ol>
+
+        <p class="brief-note">
+          Можно написать одной фразой. Мы уточним недостающие детали перед оценкой и началом работы.
+        </p>
+      </div>
+
+      <aside class="telegram-panel" aria-label="Связаться через Telegram">
+        <div class="telegram-head">
+          <span class="telegram-mark" aria-hidden="true">TG</span>
+          <div>
+            <span>{telegramContact.service}</span>
+            <strong>{telegramContact.handle}</strong>
+          </div>
+        </div>
+
+        <p>Основной канал для первого обсуждения проекта с SinijMir Studio.</p>
+
+        <a
+          href={telegramContact.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${telegramContact.buttonLabel} в Telegram`}
+        >
+          {telegramContact.buttonLabel}
+          <span aria-hidden="true">↗</span>
+        </a>
+
+        <small>Ссылка откроется в приложении Telegram или в браузере.</small>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    scroll-margin-top: 24px;
+    padding: clamp(92px, 13vw, 172px) 0;
+    border-top: 1px solid var(--color-border);
+    background:
+      radial-gradient(circle at 84% 60%, rgba(33, 136, 255, 0.17), transparent 30rem),
+      linear-gradient(180deg, rgba(8, 12, 21, 0.7), rgba(5, 7, 13, 0.96));
+  }
+
+  .contact-inner {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+  }
+
+  .section-intro {
+    display: grid;
+    grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
+    gap: clamp(34px, 8vw, 120px);
+    margin-bottom: clamp(54px, 8vw, 96px);
+  }
+
+  .section-label {
+    margin: 8px 0 0;
+    color: #6f7c91;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .section-label span {
+    color: var(--color-accent-bright);
+  }
+
+  .intro-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.55fr);
+    gap: clamp(32px, 5vw, 74px);
+    align-items: end;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2.7rem, 6vw, 5.6rem);
+    font-weight: 570;
+    letter-spacing: -0.065em;
+    line-height: 0.96;
+  }
+
+  h2 em {
+    color: var(--color-accent-bright);
+    font-style: normal;
+  }
+
+  .intro-copy > p {
+    margin: 0 0 4px;
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+    line-height: 1.75;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 18px;
+  }
+
+  .brief-panel,
+  .telegram-panel {
+    min-width: 0;
+    padding: clamp(26px, 4vw, 46px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .brief-panel {
+    background: rgba(10, 15, 26, 0.72);
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: #d7e2f0;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .panel-head span:last-child {
+    color: #69778c;
+    font-size: 0.58rem;
+  }
+
+  ol {
+    margin: 40px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 18px;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  li span {
+    color: var(--color-accent-bright);
+    font-size: 0.62rem;
+    font-weight: 750;
+  }
+
+  li p {
+    margin: 0;
+    color: #c9d5e4;
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .brief-note {
+    max-width: 540px;
+    margin: 28px 0 0;
+    color: #718098;
+    font-size: 0.72rem;
+    line-height: 1.65;
+  }
+
+  .telegram-panel {
+    display: flex;
+    flex-direction: column;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(78, 177, 255, 0.24), transparent 16rem),
+      linear-gradient(145deg, rgba(19, 52, 88, 0.82), rgba(8, 17, 31, 0.94));
+  }
+
+  .telegram-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .telegram-mark {
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(132, 204, 255, 0.52);
+    border-radius: 17px;
+    color: #fff;
+    background: rgba(35, 145, 225, 0.24);
+    box-shadow: 0 16px 44px rgba(33, 136, 255, 0.22);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .telegram-head div {
+    display: grid;
+    gap: 5px;
+  }
+
+  .telegram-head div span {
+    color: #8fa6bf;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .telegram-head strong {
+    font-size: 1.2rem;
+    font-weight: 620;
+  }
+
+  .telegram-panel > p {
+    margin: 46px 0 32px;
+    color: #b7c7d9;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .telegram-panel > a {
+    margin-top: auto;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 999px;
+    color: #fff;
+    background: #2188ff;
+    box-shadow: 0 18px 54px rgba(33, 136, 255, 0.28);
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 180ms ease, transform 180ms ease;
+  }
+
+  .telegram-panel > a:hover {
+    background: #3595ff;
+    transform: translateY(-2px);
+  }
+
+  .telegram-panel > a:focus-visible {
+    outline: 3px solid rgba(132, 204, 255, 0.55);
+    outline-offset: 4px;
+  }
+
+  .telegram-panel small {
+    margin-top: 16px;
+    color: #71869e;
+    font-size: 0.62rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .section-intro,
+    .intro-copy,
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .contact-inner {
+      width: min(calc(100% - 32px), var(--container));
+    }
+
+    .panel-head {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>

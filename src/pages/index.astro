@@ -1,6 +1,7 @@
 ---
 import SiteHeader from '../components/global/SiteHeader.astro';
 import AboutSection from '../components/home/AboutSection.astro';
+import ContactSection from '../components/home/ContactSection.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import ProcessSection from '../components/home/ProcessSection.astro';
 import ProjectsSection from '../components/home/ProjectsSection.astro';
@@ -23,6 +24,7 @@ const projects = await getPublishedProjects();
     <ProjectsSection projects={projects} />
     <ProcessSection />
     <AboutSection />
+    <ContactSection />
   </main>
 </BaseLayout>
 

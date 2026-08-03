@@ -23,7 +23,12 @@ import { contactLink, navigationItems } from '../../config/navigation';
       ))}
     </ol>
 
-    <a class="mobile-contact" href={contactLink.href}>
+    <a
+      class="mobile-contact"
+      href={contactLink.href}
+      target={contactLink.external ? '_blank' : undefined}
+      rel={contactLink.external ? 'noreferrer' : undefined}
+    >
       {contactLink.label}
       <span aria-hidden="true">↗</span>
     </a>
