@@ -1,15 +1,34 @@
 ---
 import SiteHeader from '../../components/global/SiteHeader.astro';
 import ServiceDetailCard from '../../components/services/ServiceDetailCard.astro';
+import { toPublicUrl } from '../../config/site';
 import { services } from '../../data/services';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const contactHref = `${import.meta.env.BASE_URL}contact/`;
+const organizationId = `${toPublicUrl('/')}#organization`;
+const serviceCatalog = {
+  '@type': 'ItemList',
+  '@id': `${toPublicUrl('/services/')}#services`,
+  name: 'Услуги SinijMir Studio',
+  itemListElement: services.map((service, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Service',
+      name: service.title,
+      description: service.description,
+      provider: { '@id': organizationId },
+    },
+  })),
+};
 ---
 
 <BaseLayout
   title="Услуги — SinijMir Studio"
   description="Мобильные приложения, AI-интеграции, Telegram-боты, backend, запуск и поддержка цифровых продуктов."
+  pageType="CollectionPage"
+  structuredData={[serviceCatalog]}
 >
   <div class="header-shell">
     <SiteHeader />

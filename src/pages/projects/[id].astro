@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import SiteHeader from '../../components/global/SiteHeader.astro';
 import ProjectHero from '../../components/projects/ProjectHero.astro';
+import { toPublicUrl } from '../../config/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPublishedProjects, type ProjectEntry } from '../../lib/projects';
 
@@ -21,9 +22,24 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const homeProjectsHref = `${import.meta.env.BASE_URL}#projects`;
+const projectUrl = toPublicUrl(`/projects/${project.id}/`);
+const projectStructuredData = {
+  '@type': 'CreativeWork',
+  '@id': `${projectUrl}#project`,
+  name: project.data.title,
+  description: project.data.summary,
+  genre: project.data.category,
+  keywords: [...project.data.technologies, ...project.data.platforms],
+  url: projectUrl,
+  creator: { '@id': `${toPublicUrl('/')}#organization` },
+};
 ---
 
-<BaseLayout title={`${project.data.title} — SinijMir Studio`} description={project.data.summary}>
+<BaseLayout
+  title={`${project.data.title} — SinijMir Studio`}
+  description={project.data.summary}
+  structuredData={[projectStructuredData]}
+>
   <div class="header-shell">
     <SiteHeader />
   </div>
