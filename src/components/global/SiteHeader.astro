@@ -1,6 +1,14 @@
 <header class="site-header" aria-label="Основная навигация">
   <a class="brand" href="/" aria-label="SinijMir Studio — главная">
-    <span class="brand-mark" aria-hidden="true">S</span>
+    <span class="brand-mark" aria-hidden="true">
+      <img
+        src="/branding/sinijmir-mark.png"
+        alt=""
+        width="40"
+        height="40"
+        decoding="async"
+      />
+    </span>
     <span>SinijMir <strong>Studio</strong></span>
   </a>
 
@@ -36,16 +44,21 @@
   }
 
   .brand-mark {
-    width: 34px;
-    height: 34px;
-    display: grid;
-    place-items: center;
+    width: 40px;
+    height: 40px;
+    display: block;
+    overflow: hidden;
     border: 1px solid rgba(102, 179, 255, 0.42);
-    border-radius: 11px;
-    color: #fff;
-    background: linear-gradient(145deg, #1684ff, #0b4eac);
+    border-radius: 12px;
+    background: #02040d;
     box-shadow: 0 10px 35px rgba(33, 136, 255, 0.26);
-    font-size: 0.9rem;
+  }
+
+  .brand-mark img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
   }
 
   .build-status {
