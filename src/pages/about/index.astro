@@ -1,0 +1,235 @@
+---
+import AboutHero from '../../components/about/AboutHero.astro';
+import StudioPrincipleCard from '../../components/about/StudioPrincipleCard.astro';
+import SiteHeader from '../../components/global/SiteHeader.astro';
+import { developmentTools, studioPrinciples } from '../../data/studio';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projectsHref = `${import.meta.env.BASE_URL}#projects`;
+---
+
+<BaseLayout
+  title="О студии — SinijMir Studio"
+  description="SinijMir Studio — независимая студия мобильной разработки, серверных решений, AI-интеграций и автоматизации."
+>
+  <div class="header-shell">
+    <SiteHeader />
+  </div>
+
+  <main>
+    <AboutHero />
+
+    <section class="principles-section" aria-labelledby="principles-title">
+      <div class="section-inner">
+        <div class="section-intro">
+          <p class="section-label"><span>02</span> / Principles</p>
+          <div>
+            <h2 id="principles-title">Принципы, на которых строится студия.</h2>
+            <p>Они одинаково применяются к собственным продуктам и будущим клиентским задачам.</p>
+          </div>
+        </div>
+
+        <div class="principles-grid">
+          {studioPrinciples.map((principle) => <StudioPrincipleCard principle={principle} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="system-section" aria-labelledby="system-title">
+      <div class="section-inner">
+        <div class="section-intro">
+          <p class="section-label"><span>03</span> / System</p>
+          <div>
+            <h2 id="system-title">AI ускоряет процесс. Ответственность остаётся инженерной.</h2>
+            <p>
+              Используем AI там, где он помогает быстрее исследовать, создавать и проверять. Архитектуру, качество и итоговое
+              решение оцениваем по фактическому результату.
+            </p>
+          </div>
+        </div>
+
+        <div class="tools-list">
+          {
+            developmentTools.map((tool) => (
+              <article>
+                <span>{tool.stage}</span>
+                <h3>{tool.title}</h3>
+                <p>{tool.description}</p>
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="projects-link">
+          <p>Текущий подход уже применяется в собственных продуктах студии.</p>
+          <a href={projectsHref}>Смотреть проекты <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .header-shell,
+  .section-inner {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+  }
+
+  .principles-section,
+  .system-section {
+    padding: clamp(88px, 12vw, 164px) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .system-section {
+    background:
+      radial-gradient(circle at 86% 62%, rgba(33, 136, 255, 0.1), transparent 28rem),
+      rgba(8, 12, 21, 0.5);
+  }
+
+  .section-intro {
+    display: grid;
+    grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
+    gap: clamp(34px, 8vw, 120px);
+    margin-bottom: clamp(52px, 8vw, 92px);
+  }
+
+  .section-label {
+    margin: 8px 0 0;
+    color: #6f7c91;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .section-label span {
+    color: var(--color-accent-bright);
+  }
+
+  h2 {
+    max-width: 900px;
+    margin: 0;
+    font-size: clamp(2.4rem, 5vw, 4.8rem);
+    font-weight: 570;
+    letter-spacing: -0.06em;
+    line-height: 1;
+  }
+
+  .section-intro > div > p {
+    max-width: 650px;
+    margin: 26px 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .tools-list {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .tools-list article {
+    display: grid;
+    grid-template-columns: minmax(110px, 0.3fr) minmax(180px, 0.5fr) minmax(0, 1.2fr);
+    gap: 28px;
+    align-items: baseline;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tools-list span {
+    color: var(--color-accent-bright);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .tools-list h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 590;
+    letter-spacing: -0.035em;
+  }
+
+  .tools-list p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+
+  .projects-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-top: 42px;
+    padding: 28px 0 0;
+  }
+
+  .projects-link p {
+    margin: 0;
+    color: #718098;
+    font-size: 0.78rem;
+  }
+
+  .projects-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--color-text);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .projects-link a span {
+    color: var(--color-accent-bright);
+    font-size: 1rem;
+  }
+
+  .projects-link a:hover,
+  .projects-link a:focus-visible {
+    color: var(--color-accent-bright);
+  }
+
+  @media (max-width: 820px) {
+    .section-intro {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .tools-list article {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .projects-link {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .header-shell,
+    .section-inner {
+      width: min(calc(100% - 32px), var(--container));
+    }
+  }
+</style>

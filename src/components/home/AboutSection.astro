@@ -1,0 +1,222 @@
+---
+import { studioPrinciples } from '../../data/studio';
+import StudioPrincipleCard from '../about/StudioPrincipleCard.astro';
+
+const aboutHref = `${import.meta.env.BASE_URL}about/`;
+---
+
+<section class="about-section" id="about" aria-labelledby="about-title">
+  <div class="about-inner">
+    <div class="section-intro">
+      <p class="section-label"><span>05</span> / Studio</p>
+
+      <div class="intro-copy">
+        <h2 id="about-title">
+          Студия строится вокруг<br />
+          <em>продукта, системы и AI.</em>
+        </h2>
+        <div class="studio-summary">
+          <p>
+            SinijMir Studio — развивающаяся независимая студия цифровых продуктов. Мы объединяем мобильную разработку,
+            серверные решения и современные AI-инструменты в одном рабочем процессе.
+          </p>
+          <a href={aboutHref}>
+            Подробнее о студии
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="studio-statement">
+      <div class="statement-mark" aria-hidden="true">
+        <span>SM</span>
+        <i></i>
+      </div>
+      <p>
+        Не обещаем абстрактную «цифровую трансформацию». Проектируем, собираем и проверяем конкретные продукты — от первой
+        рабочей версии до развития после запуска.
+      </p>
+    </div>
+
+    <div class="principles-grid">
+      {studioPrinciples.map((principle) => <StudioPrincipleCard principle={principle} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    scroll-margin-top: 24px;
+    padding: clamp(92px, 13vw, 172px) 0;
+    border-top: 1px solid var(--color-border);
+    background:
+      radial-gradient(circle at 10% 74%, rgba(33, 136, 255, 0.11), transparent 28rem),
+      linear-gradient(180deg, rgba(5, 7, 13, 0.92), rgba(8, 12, 21, 0.72));
+  }
+
+  .about-inner {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+  }
+
+  .section-intro {
+    display: grid;
+    grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
+    gap: clamp(34px, 8vw, 120px);
+    margin-bottom: clamp(56px, 8vw, 100px);
+  }
+
+  .section-label {
+    margin: 8px 0 0;
+    color: #6f7c91;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .section-label span {
+    color: var(--color-accent-bright);
+  }
+
+  .intro-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+    gap: clamp(32px, 5vw, 74px);
+    align-items: end;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 570;
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+  }
+
+  h2 em {
+    color: var(--color-accent-bright);
+    font-style: normal;
+  }
+
+  .studio-summary p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+    line-height: 1.75;
+  }
+
+  .studio-summary a {
+    margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--color-text);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .studio-summary a span {
+    color: var(--color-accent-bright);
+    font-size: 1rem;
+  }
+
+  .studio-summary a:hover,
+  .studio-summary a:focus-visible {
+    color: var(--color-accent-bright);
+  }
+
+  .studio-statement {
+    min-height: 300px;
+    margin-bottom: 18px;
+    padding: clamp(28px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: minmax(220px, 0.6fr) minmax(0, 1.4fr);
+    gap: clamp(36px, 7vw, 100px);
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 12% 50%, rgba(33, 136, 255, 0.18), transparent 18rem),
+      rgba(10, 15, 26, 0.76);
+  }
+
+  .statement-mark {
+    position: relative;
+    width: 170px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(102, 179, 255, 0.36);
+    border-radius: 50%;
+    box-shadow: 0 0 70px rgba(33, 136, 255, 0.15);
+  }
+
+  .statement-mark span {
+    position: relative;
+    z-index: 2;
+    font-size: 2.4rem;
+    font-weight: 720;
+    letter-spacing: -0.08em;
+  }
+
+  .statement-mark i {
+    position: absolute;
+    width: 130%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent-bright), transparent);
+    transform: rotate(-38deg);
+  }
+
+  .studio-statement > p {
+    max-width: 720px;
+    margin: 0;
+    font-size: clamp(1.45rem, 3.5vw, 2.7rem);
+    font-weight: 510;
+    letter-spacing: -0.045em;
+    line-height: 1.25;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  @media (max-width: 900px) {
+    .section-intro,
+    .intro-copy {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .studio-summary {
+      max-width: 620px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .studio-statement {
+      grid-template-columns: 1fr;
+    }
+
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .about-inner {
+      width: min(calc(100% - 32px), var(--container));
+    }
+
+    .statement-mark {
+      width: 130px;
+    }
+  }
+</style>

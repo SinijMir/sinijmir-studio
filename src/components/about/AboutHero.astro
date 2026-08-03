@@ -1,0 +1,185 @@
+---
+const homeHref = import.meta.env.BASE_URL;
+---
+
+<section class="about-hero" aria-labelledby="about-page-title">
+  <div class="hero-inner">
+    <a class="breadcrumb" href={homeHref}>
+      <span aria-hidden="true">←</span>
+      На главную
+    </a>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Independent product studio</p>
+        <h1 id="about-page-title">
+          Строим студию,<br />
+          которая умеет <em>создавать продукты.</em>
+        </h1>
+      </div>
+
+      <div class="hero-note">
+        <span>SinijMir Studio / 2026</span>
+        <p>
+          Развиваем мобильные приложения, серверные решения и AI-интеграции как одну связанную систему разработки.
+        </p>
+      </div>
+    </div>
+
+    <div class="manifesto">
+      <p>
+        SinijMir Studio формируется как компактная технологическая студия. Мы показываем реальный прогресс через продукты,
+        проверенные этапы и открытое описание того, что уже сделано.
+      </p>
+      <div class="manifesto-signal" aria-hidden="true">
+        <span>Build</span>
+        <i></i>
+        <span>Verify</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-hero {
+    padding: clamp(54px, 8vw, 104px) 0 clamp(82px, 12vw, 152px);
+    border-bottom: 1px solid var(--color-border);
+    background:
+      radial-gradient(circle at 76% 28%, rgba(33, 136, 255, 0.18), transparent 30rem),
+      linear-gradient(180deg, rgba(10, 15, 26, 0.72), rgba(5, 7, 13, 0.96));
+  }
+
+  .hero-inner {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #8190a6;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .breadcrumb:hover,
+  .breadcrumb:focus-visible {
+    color: var(--color-accent-bright);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.55fr);
+    gap: clamp(42px, 8vw, 120px);
+    align-items: end;
+    margin-top: clamp(62px, 9vw, 112px);
+  }
+
+  .eyebrow {
+    margin: 0 0 24px;
+    color: var(--color-accent-bright);
+    font-size: 0.66rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(3.4rem, 8vw, 7.4rem);
+    font-weight: 570;
+    letter-spacing: -0.078em;
+    line-height: 0.93;
+  }
+
+  h1 em {
+    color: var(--color-accent-bright);
+    font-style: normal;
+  }
+
+  .hero-note {
+    padding-left: 22px;
+    border-left: 1px solid var(--color-border);
+  }
+
+  .hero-note span {
+    color: #718098;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .hero-note p {
+    margin: 15px 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+    line-height: 1.75;
+  }
+
+  .manifesto {
+    min-height: 300px;
+    margin-top: clamp(72px, 10vw, 126px);
+    padding: clamp(28px, 5vw, 58px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(240px, 0.55fr);
+    gap: clamp(42px, 8vw, 116px);
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: rgba(10, 15, 26, 0.72);
+  }
+
+  .manifesto > p {
+    margin: 0;
+    font-size: clamp(1.45rem, 3.5vw, 2.8rem);
+    font-weight: 510;
+    letter-spacing: -0.048em;
+    line-height: 1.24;
+  }
+
+  .manifesto-signal {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 14px;
+    align-items: center;
+    color: #718098;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .manifesto-signal i {
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--color-accent-bright);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(102, 179, 255, 0.5);
+  }
+
+  .manifesto-signal span:last-child {
+    text-align: right;
+  }
+
+  @media (max-width: 820px) {
+    .hero-grid,
+    .manifesto {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-note {
+      max-width: 620px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .hero-inner {
+      width: min(calc(100% - 32px), var(--container));
+    }
+  }
+</style>
