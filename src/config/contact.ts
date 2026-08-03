@@ -1,16 +1,37 @@
 export interface ContactChannel {
+  id: string;
+  type: 'messenger' | 'phone' | 'email' | 'location';
   service: string;
   handle: string;
   href: string;
   buttonLabel: string;
+  external: boolean;
+  primary: boolean;
 }
 
 export const telegramContact: ContactChannel = {
+  id: 'telegram',
+  type: 'messenger',
   service: 'Telegram',
   handle: '@sinijmir',
   href: 'https://t.me/sinijmir',
   buttonLabel: 'Обсудить проект',
+  external: true,
+  primary: true,
 };
+
+export const phoneContact: ContactChannel = {
+  id: 'phone-primary',
+  type: 'phone',
+  service: 'Телефон',
+  handle: '+7 (910) 900-99-42',
+  href: 'tel:+79109009942',
+  buttonLabel: 'Позвонить',
+  external: false,
+  primary: false,
+};
+
+export const contactChannels = [telegramContact, phoneContact] as const;
 
 export const projectBriefPrompts = [
   'Что вы хотите создать или улучшить',

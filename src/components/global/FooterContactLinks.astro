@@ -1,0 +1,58 @@
+---
+import { phoneContact, telegramContact } from '../../config/contact';
+---
+
+<div class="footer-contact-links">
+  <a href={telegramContact.href} target="_blank" rel="noreferrer">
+    {telegramContact.handle}
+    <span aria-hidden="true">↗</span>
+  </a>
+  <a href={phoneContact.href} aria-label={`Позвонить по номеру ${phoneContact.handle}`}>
+    {phoneContact.handle}
+  </a>
+</div>
+<p>Основной канал — Telegram. При необходимости можно позвонить напрямую.</p>
+
+<style>
+  .footer-contact-links {
+    display: grid;
+    gap: 12px;
+  }
+
+  a {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 620;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+
+  a:first-child {
+    font-size: 1rem;
+  }
+
+  a:hover {
+    color: var(--color-accent-bright);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--color-accent-bright);
+    outline-offset: 4px;
+  }
+
+  span {
+    color: var(--color-accent-bright);
+  }
+
+  p {
+    max-width: 200px;
+    margin: 15px 0 0;
+    color: #65738a;
+    font-size: 0.67rem;
+    line-height: 1.55;
+  }
+</style>

@@ -1,4 +1,5 @@
 ---
+import ContactActions from '../contact/ContactActions.astro';
 import { projectBriefPrompts, telegramContact } from '../../config/contact';
 ---
 
@@ -42,7 +43,7 @@ import { projectBriefPrompts, telegramContact } from '../../config/contact';
         </p>
       </div>
 
-      <aside class="telegram-panel" aria-label="Связаться через Telegram">
+      <aside class="contact-panel" aria-label="Связаться с SinijMir Studio">
         <div class="telegram-head">
           <span class="telegram-mark" aria-hidden="true">TG</span>
           <div>
@@ -53,17 +54,9 @@ import { projectBriefPrompts, telegramContact } from '../../config/contact';
 
         <p>Основной канал для первого обсуждения проекта с SinijMir Studio.</p>
 
-        <a
-          href={telegramContact.href}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`${telegramContact.buttonLabel} в Telegram`}
-        >
-          {telegramContact.buttonLabel}
-          <span aria-hidden="true">↗</span>
-        </a>
+        <ContactActions />
 
-        <small>Ссылка откроется в приложении Telegram или в браузере.</small>
+        <small>Telegram остаётся основным каналом. На мобильном кнопка звонка откроет приложение телефона.</small>
       </aside>
     </div>
   </div>
@@ -138,7 +131,7 @@ import { projectBriefPrompts, telegramContact } from '../../config/contact';
   }
 
   .brief-panel,
-  .telegram-panel {
+  .contact-panel {
     min-width: 0;
     padding: clamp(26px, 4vw, 46px);
     border: 1px solid var(--color-border);
@@ -203,7 +196,7 @@ import { projectBriefPrompts, telegramContact } from '../../config/contact';
     line-height: 1.65;
   }
 
-  .telegram-panel {
+  .contact-panel {
     display: flex;
     flex-direction: column;
     background:
@@ -250,40 +243,14 @@ import { projectBriefPrompts, telegramContact } from '../../config/contact';
     font-weight: 620;
   }
 
-  .telegram-panel > p {
+  .contact-panel > p {
     margin: 46px 0 32px;
     color: #b7c7d9;
     font-size: 0.88rem;
     line-height: 1.7;
   }
 
-  .telegram-panel > a {
-    margin-top: auto;
-    padding: 16px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 999px;
-    color: #fff;
-    background: var(--color-accent);
-    box-shadow: 0 18px 54px rgba(33, 136, 255, 0.28);
-    font-size: 0.84rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: background 180ms ease, transform 180ms ease;
-  }
-
-  .telegram-panel > a:hover {
-    background: var(--color-accent-hover);
-    transform: translateY(-2px);
-  }
-
-  .telegram-panel > a:focus-visible {
-    outline: 3px solid rgba(132, 204, 255, 0.55);
-    outline-offset: 4px;
-  }
-
-  .telegram-panel small {
+  .contact-panel small {
     margin-top: 16px;
     color: #71869e;
     font-size: 0.62rem;

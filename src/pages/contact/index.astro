@@ -1,5 +1,6 @@
 ---
 import SiteHeader from '../../components/global/SiteHeader.astro';
+import ContactActions from '../../components/contact/ContactActions.astro';
 import { projectBriefPrompts, telegramContact } from '../../config/contact';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -27,14 +28,11 @@ const servicesHref = `${import.meta.env.BASE_URL}services/`;
           </p>
         </div>
 
-        <aside class="telegram-card" aria-label="Контакт в Telegram">
+        <aside class="contact-card" aria-label="Способы связи с SinijMir Studio">
           <span class="channel-label">Основной канал</span>
           <strong>{telegramContact.handle}</strong>
           <p>Личные сообщения в Telegram для первого обсуждения и уточнения задачи.</p>
-          <a href={telegramContact.href} target="_blank" rel="noreferrer">
-            Открыть Telegram
-            <span aria-hidden="true">↗</span>
-          </a>
+          <ContactActions telegramLabel="Открыть Telegram" />
         </aside>
       </div>
     </section>
@@ -126,7 +124,7 @@ const servicesHref = `${import.meta.env.BASE_URL}services/`;
     line-height: 1.78;
   }
 
-  .telegram-card {
+  .contact-card {
     padding: clamp(28px, 4vw, 42px);
     border: 1px solid rgba(102, 179, 255, 0.32);
     border-radius: var(--radius-lg);
@@ -135,21 +133,20 @@ const servicesHref = `${import.meta.env.BASE_URL}services/`;
       rgba(10, 25, 45, 0.88);
   }
 
-  .telegram-card strong {
+  .contact-card strong {
     display: block;
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 610;
     letter-spacing: -0.045em;
   }
 
-  .telegram-card p {
+  .contact-card p {
     margin: 26px 0 34px;
     color: #aebed1;
     font-size: 0.82rem;
     line-height: 1.7;
   }
 
-  .telegram-card a,
   .expectation-section > div > a {
     display: flex;
     align-items: center;
@@ -159,12 +156,6 @@ const servicesHref = `${import.meta.env.BASE_URL}services/`;
     font-size: 0.78rem;
     font-weight: 700;
     text-decoration: none;
-  }
-
-  .telegram-card a {
-    padding: 15px 18px;
-    border-radius: 999px;
-    background: var(--color-accent);
   }
 
   .brief-section,
@@ -246,8 +237,6 @@ const servicesHref = `${import.meta.env.BASE_URL}services/`;
     font-size: 1rem;
   }
 
-  .telegram-card a:hover,
-  .telegram-card a:focus-visible,
   .expectation-grid > a:hover,
   .expectation-grid > a:focus-visible {
     color: var(--color-accent-bright);

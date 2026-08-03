@@ -1,0 +1,132 @@
+---
+import { phoneContact, telegramContact } from '../../config/contact';
+
+interface Props {
+  telegramLabel?: string;
+}
+
+const { telegramLabel = telegramContact.buttonLabel } = Astro.props;
+---
+
+<div class="contact-options">
+  <div class="phone-direct">
+    <span>{phoneContact.service}</span>
+    <a href={phoneContact.href} aria-label={`Позвонить по номеру ${phoneContact.handle}`}>
+      {phoneContact.handle}
+    </a>
+  </div>
+
+  <div class="contact-actions">
+    <a
+      class="action action-primary"
+      href={telegramContact.href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`${telegramLabel} в Telegram`}
+    >
+      {telegramLabel}
+      <span aria-hidden="true">↗</span>
+    </a>
+    <a
+      class="action action-secondary"
+      href={phoneContact.href}
+      aria-label={`Позвонить по номеру ${phoneContact.handle}`}
+    >
+      {phoneContact.buttonLabel}
+      <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</div>
+
+<style>
+  .contact-options {
+    margin-top: auto;
+  }
+
+  .phone-direct {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 14px;
+    padding: 0 4px;
+  }
+
+  .phone-direct span {
+    color: #8397af;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .phone-direct a {
+    color: #e8f2ff;
+    font-size: 0.9rem;
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .contact-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(112px, 0.65fr);
+    gap: 10px;
+  }
+
+  .action {
+    min-height: 50px;
+    padding: 14px 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+  }
+
+  .action-primary {
+    background: var(--color-accent);
+    box-shadow: 0 18px 54px rgba(33, 136, 255, 0.25);
+  }
+
+  .action-secondary {
+    border-color: rgba(132, 204, 255, 0.36);
+    background: rgba(8, 18, 33, 0.48);
+  }
+
+  .action:hover {
+    transform: translateY(-2px);
+  }
+
+  .action-primary:hover {
+    background: var(--color-accent-hover);
+  }
+
+  .action-secondary:hover {
+    border-color: rgba(132, 204, 255, 0.68);
+    background: rgba(25, 65, 104, 0.5);
+  }
+
+  .action:focus-visible,
+  .phone-direct a:focus-visible {
+    outline: 3px solid rgba(132, 204, 255, 0.55);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 520px) {
+    .phone-direct {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .contact-actions {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
