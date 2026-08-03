@@ -1,0 +1,154 @@
+---
+import { services } from '../../data/services';
+import ServiceCard from './ServiceCard.astro';
+---
+
+<section class="services-section" id="services" aria-labelledby="services-title">
+  <div class="services-inner">
+    <div class="section-heading">
+      <p class="section-label"><span>02</span> / Services</p>
+      <div class="heading-copy">
+        <h2 id="services-title">
+          Решаем задачи целиком —<br />
+          от гипотезы до <em>релиза.</em>
+        </h2>
+        <p>
+          Соединяем продуктовый подход, разработку и AI-инструменты в одном процессе.
+          Вы получаете не набор разрозненных функций, а понятный путь к работающему результату.
+        </p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+
+    <div class="section-note">
+      <span>Нужна другая задача?</span>
+      <p>Сначала разберём цель и предложим подходящий формат работы.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    scroll-margin-top: 24px;
+    padding: clamp(92px, 13vw, 172px) 0;
+    border-top: 1px solid var(--color-border);
+    background:
+      radial-gradient(circle at 12% 22%, rgba(26, 122, 255, 0.1), transparent 28rem),
+      linear-gradient(180deg, rgba(5, 7, 13, 0.1), rgba(8, 12, 21, 0.72));
+  }
+
+  .services-inner {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+  }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
+    gap: clamp(34px, 8vw, 120px);
+    margin-bottom: clamp(48px, 7vw, 84px);
+  }
+
+  .section-label {
+    margin: 8px 0 0;
+    color: #6f7c91;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .section-label span {
+    color: var(--color-accent-bright);
+  }
+
+  .heading-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(250px, 0.6fr);
+    gap: clamp(32px, 5vw, 74px);
+    align-items: end;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 570;
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+  }
+
+  h2 em {
+    color: var(--color-accent-bright);
+    font-style: normal;
+  }
+
+  .heading-copy > p {
+    margin: 0 0 4px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .section-note {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 28px;
+    padding: 22px 4px 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section-note span {
+    color: var(--color-text);
+    font-size: 0.78rem;
+    font-weight: 650;
+  }
+
+  .section-note p {
+    margin: 0;
+    color: #6f7c91;
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 900px) {
+    .section-heading,
+    .heading-copy {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading,
+    .heading-copy {
+      gap: 28px;
+    }
+
+    .heading-copy > p {
+      max-width: 620px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .services-inner {
+      width: min(calc(100% - 32px), var(--container));
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-note {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>

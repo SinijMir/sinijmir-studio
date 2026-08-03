@@ -1,20 +1,24 @@
 ---
 import SiteHeader from '../components/global/SiteHeader.astro';
 import HeroSection from '../components/home/HeroSection.astro';
+import ServicesSection from '../components/home/ServicesSection.astro';
 import TechnologyLine from '../components/home/TechnologyLine.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
-  <main class="page-shell">
-    <SiteHeader />
-    <HeroSection />
-    <TechnologyLine />
+  <main>
+    <div class="intro-shell">
+      <SiteHeader />
+      <HeroSection />
+      <TechnologyLine />
+    </div>
+    <ServicesSection />
   </main>
 </BaseLayout>
 
 <style>
-  .page-shell {
+  .intro-shell {
     width: min(calc(100% - 48px), var(--container));
     min-height: 100vh;
     margin: 0 auto;
@@ -24,7 +28,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   @media (max-width: 560px) {
-    .page-shell {
+    .intro-shell {
       width: min(calc(100% - 32px), var(--container));
       padding-top: 14px;
     }

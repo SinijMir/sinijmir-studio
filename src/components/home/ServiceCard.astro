@@ -1,0 +1,150 @@
+---
+import type { Service } from '../../data/services';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<article class:list={['service-card', `service-card--${service.accent}`]}>
+  <div class="card-head">
+    <span class="service-number">{service.number}</span>
+    <span class="service-signal" aria-hidden="true"></span>
+  </div>
+
+  <div class="card-copy">
+    <h3>{service.title}</h3>
+    <p>{service.description}</p>
+  </div>
+
+  <ul aria-label={`Технологии: ${service.title}`}>
+    {service.technologies.map((technology) => <li>{technology}</li>)}
+  </ul>
+</article>
+
+<style>
+  .service-card {
+    --service-color: var(--color-accent-bright);
+    position: relative;
+    min-height: 320px;
+    overflow: hidden;
+    padding: clamp(24px, 3vw, 36px);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(155deg, rgba(18, 25, 42, 0.88), rgba(8, 11, 20, 0.92));
+    transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  .service-card::before {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    top: -150px;
+    right: -90px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--service-color) 17%, transparent);
+    filter: blur(12px);
+    content: '';
+    pointer-events: none;
+  }
+
+  .service-card:hover {
+    border-color: color-mix(in srgb, var(--service-color) 48%, transparent);
+    box-shadow: 0 28px 80px color-mix(in srgb, var(--service-color) 10%, transparent);
+    transform: translateY(-4px);
+  }
+
+  .service-card--cyan {
+    --service-color: #43dcff;
+  }
+
+  .service-card--blue {
+    --service-color: #4a9dff;
+  }
+
+  .service-card--violet {
+    --service-color: #8d7dff;
+  }
+
+  .service-card--indigo {
+    --service-color: #6078ff;
+  }
+
+  .card-head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .service-number {
+    color: var(--service-color);
+    font-size: 0.7rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+  }
+
+  .service-signal {
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--service-color);
+    border-radius: 50%;
+    box-shadow: 0 0 18px color-mix(in srgb, var(--service-color) 56%, transparent);
+  }
+
+  .card-copy {
+    position: relative;
+    margin: auto 0 32px;
+  }
+
+  h3 {
+    margin: 0 0 16px;
+    font-size: clamp(1.45rem, 2.5vw, 2rem);
+    font-weight: 590;
+    letter-spacing: -0.045em;
+  }
+
+  p {
+    max-width: 500px;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  ul {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 7px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: #8190a6;
+    background: rgba(4, 7, 13, 0.36);
+    font-size: 0.64rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 620px) {
+    .service-card {
+      min-height: 286px;
+    }
+
+    .service-card:hover {
+      transform: none;
+    }
+  }
+</style>
