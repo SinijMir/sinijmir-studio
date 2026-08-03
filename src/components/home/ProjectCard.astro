@@ -5,9 +5,10 @@ import { projectStatusLabels } from '../../lib/projects';
 interface Props {
   project: ProjectEntry;
   index: number;
+  lead?: boolean;
 }
 
-const { project, index } = Astro.props;
+const { project, index, lead = false } = Astro.props;
 const { data } = project;
 const number = String(index + 1).padStart(2, '0');
 const mark = data.title
@@ -25,7 +26,7 @@ const projectHref = `${import.meta.env.BASE_URL}projects/${project.id}/`;
   class:list={[
     'project-card',
     `project-card--tone-${(index % 3) + 1}`,
-    { 'project-card--lead': index === 0 },
+    { 'project-card--lead': lead },
   ]}
 >
   <div class="project-visual" aria-hidden="true">

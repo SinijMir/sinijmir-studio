@@ -27,7 +27,15 @@ const { projects } = Astro.props;
     </div>
 
     <div class="projects-grid">
-      {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
+      {
+        projects.map((project, index) => (
+          <ProjectCard
+            project={project}
+            index={index}
+            lead={projects.length % 2 === 1 && index === 0}
+          />
+        ))
+      }
     </div>
 
     <div class="projects-note">
