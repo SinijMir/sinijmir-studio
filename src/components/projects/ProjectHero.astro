@@ -1,0 +1,277 @@
+---
+import type { ProjectEntry } from '../../lib/projects';
+import { projectStatusLabels } from '../../lib/projects';
+
+interface Props {
+  project: ProjectEntry;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const homeProjectsHref = `${import.meta.env.BASE_URL}#projects`;
+const stack = data.technologies.length > 0 ? data.technologies.join(' · ') : 'Формируется';
+const platforms = data.platforms.length > 0 ? data.platforms.join(' · ') : 'Будут определены';
+---
+
+<section class="project-hero" aria-labelledby="project-title">
+  <div class="hero-inner">
+    <a class="breadcrumb" href={homeProjectsHref}>
+      <span aria-hidden="true">←</span>
+      Все проекты
+    </a>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="project-meta">
+          <span class:list={['status', `status--${data.status}`]}>
+            <i aria-hidden="true"></i>
+            {projectStatusLabels[data.status]}
+          </span>
+          <span>{data.category}</span>
+          <span>{data.year}</span>
+        </div>
+
+        <h1 id="project-title">{data.title}</h1>
+        <p class="tagline">{data.tagline}</p>
+        <p class="summary">{data.summary}</p>
+      </div>
+
+      <div class="project-signal" aria-hidden="true">
+        <span>{project.id.toUpperCase()}</span>
+        <div class="signal-core"></div>
+        <div class="signal-axis signal-axis--one"></div>
+        <div class="signal-axis signal-axis--two"></div>
+      </div>
+    </div>
+
+    <dl class="project-facts">
+      <div>
+        <dt>Тип проекта</dt>
+        <dd>{data.projectType === 'studio' ? 'Собственный продукт' : 'Клиентский проект'}</dd>
+      </div>
+      <div>
+        <dt>Платформы</dt>
+        <dd>{platforms}</dd>
+      </div>
+      <div>
+        <dt>Технологии</dt>
+        <dd>{stack}</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .project-hero {
+    padding: clamp(54px, 8vw, 104px) 0 clamp(68px, 10vw, 126px);
+    border-bottom: 1px solid var(--color-border);
+    background:
+      radial-gradient(circle at 78% 34%, rgba(36, 128, 255, 0.16), transparent 28rem),
+      linear-gradient(180deg, rgba(10, 15, 26, 0.72), rgba(5, 7, 13, 0.96));
+  }
+
+  .hero-inner {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #8190a6;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 180ms ease;
+  }
+
+  .breadcrumb:hover,
+  .breadcrumb:focus-visible {
+    color: var(--color-accent-bright);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+    gap: clamp(52px, 9vw, 132px);
+    align-items: center;
+    margin-top: clamp(62px, 9vw, 112px);
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 22px;
+    color: #718098;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-accent-bright);
+  }
+
+  .status i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 14px currentColor;
+  }
+
+  .status--development {
+    color: #59d8ff;
+  }
+
+  .status--concept {
+    color: #a99dff;
+  }
+
+  h1 {
+    margin: 26px 0 0;
+    font-size: clamp(4rem, 10vw, 8.8rem);
+    font-weight: 590;
+    letter-spacing: -0.085em;
+    line-height: 0.86;
+  }
+
+  .tagline {
+    margin: 30px 0 0;
+    color: #dbe8f8;
+    font-size: clamp(1.05rem, 2vw, 1.45rem);
+    line-height: 1.45;
+  }
+
+  .summary {
+    max-width: 700px;
+    margin: 20px 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.94rem;
+    line-height: 1.8;
+  }
+
+  .project-signal {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, rgba(33, 136, 255, 0.18), transparent 54%),
+      rgba(8, 13, 24, 0.68);
+    box-shadow: inset 0 0 70px rgba(33, 136, 255, 0.08);
+  }
+
+  .project-signal > span {
+    position: absolute;
+    top: 22%;
+    color: #75839a;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .signal-core {
+    width: 34%;
+    aspect-ratio: 1;
+    border: 1px solid var(--color-accent-bright);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 22px rgba(33, 136, 255, 0.07),
+      0 0 58px rgba(33, 136, 255, 0.32);
+  }
+
+  .signal-axis {
+    position: absolute;
+    width: 72%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(102, 179, 255, 0.7), transparent);
+  }
+
+  .signal-axis--one {
+    transform: rotate(38deg);
+  }
+
+  .signal-axis--two {
+    transform: rotate(-38deg);
+  }
+
+  .project-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: clamp(64px, 9vw, 112px) 0 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .project-facts > div {
+    min-width: 0;
+    padding: 22px clamp(12px, 2.5vw, 30px);
+    border-right: 1px solid var(--color-border);
+  }
+
+  .project-facts > div:first-child {
+    padding-left: 0;
+  }
+
+  .project-facts > div:last-child {
+    border-right: 0;
+  }
+
+  dt {
+    color: #66748a;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 9px 0 0;
+    color: #d9e4f2;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 820px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-signal {
+      width: min(72vw, 360px);
+    }
+  }
+
+  @media (max-width: 620px) {
+    .hero-inner {
+      width: min(calc(100% - 32px), var(--container));
+    }
+
+    .project-facts {
+      grid-template-columns: 1fr;
+    }
+
+    .project-facts > div,
+    .project-facts > div:first-child {
+      padding: 18px 0;
+      border-right: 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .project-facts > div:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

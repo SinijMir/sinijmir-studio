@@ -1,0 +1,214 @@
+---
+import { render } from 'astro:content';
+import SiteHeader from '../../components/global/SiteHeader.astro';
+import ProjectHero from '../../components/projects/ProjectHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPublishedProjects, type ProjectEntry } from '../../lib/projects';
+
+export async function getStaticPaths() {
+  const projects = await getPublishedProjects();
+
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: ProjectEntry;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const homeProjectsHref = `${import.meta.env.BASE_URL}#projects`;
+---
+
+<BaseLayout title={`${project.data.title} — SinijMir Studio`} description={project.data.summary}>
+  <div class="header-shell">
+    <SiteHeader />
+  </div>
+
+  <main>
+    <ProjectHero project={project} />
+
+    <section class="project-story" aria-label={`Описание проекта ${project.data.title}`}>
+      <div class="story-inner">
+        <aside>
+          <span>01 / Case</span>
+          <p>Продукт, подход и текущее направление развития.</p>
+        </aside>
+
+        <article class="content">
+          <Content />
+        </article>
+      </div>
+    </section>
+
+    <section class="project-return" aria-label="Возврат к портфолио">
+      <div>
+        <p>Следите за развитием продуктов студии</p>
+        <a href={homeProjectsHref}>
+          Вернуться ко всем проектам
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .header-shell {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+  }
+
+  .project-story {
+    padding: clamp(78px, 11vw, 148px) 0;
+    background: var(--color-bg);
+  }
+
+  .story-inner {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(160px, 0.35fr) minmax(0, 1.65fr);
+    gap: clamp(42px, 9vw, 132px);
+  }
+
+  aside span {
+    color: var(--color-accent-bright);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  aside p {
+    max-width: 180px;
+    margin: 16px 0 0;
+    color: #718098;
+    font-size: 0.72rem;
+    line-height: 1.65;
+  }
+
+  .content {
+    max-width: 780px;
+  }
+
+  .content :global(h2) {
+    margin: 70px 0 22px;
+    color: var(--color-text);
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 580;
+    letter-spacing: -0.055em;
+    line-height: 1.06;
+  }
+
+  .content :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .content :global(p) {
+    margin: 0 0 24px;
+    color: var(--color-text-muted);
+    font-size: clamp(0.96rem, 1.5vw, 1.08rem);
+    line-height: 1.85;
+  }
+
+  .content :global(ul) {
+    display: grid;
+    gap: 12px;
+    margin: 30px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .content :global(li) {
+    position: relative;
+    padding: 17px 18px 17px 46px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: #c8d5e5;
+    background: rgba(13, 18, 31, 0.58);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .content :global(li::before) {
+    position: absolute;
+    left: 19px;
+    top: 23px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent-bright);
+    box-shadow: 0 0 12px rgba(102, 179, 255, 0.7);
+    content: '';
+  }
+
+  .project-return {
+    padding: 0 0 clamp(72px, 10vw, 126px);
+  }
+
+  .project-return > div {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+    padding: clamp(30px, 5vw, 54px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 26px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(23, 35, 58, 0.72), rgba(8, 12, 21, 0.92));
+  }
+
+  .project-return p {
+    margin: 0;
+    color: #8190a6;
+    font-size: 0.78rem;
+  }
+
+  .project-return a {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    color: var(--color-text);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 650;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  .project-return a span {
+    color: var(--color-accent-bright);
+  }
+
+  .project-return a:hover,
+  .project-return a:focus-visible {
+    color: var(--color-accent-bright);
+  }
+
+  @media (max-width: 760px) {
+    .story-inner {
+      grid-template-columns: 1fr;
+    }
+
+    aside p {
+      max-width: 440px;
+    }
+
+    .project-return > div {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .header-shell,
+    .story-inner,
+    .project-return > div {
+      width: min(calc(100% - 32px), var(--container));
+    }
+  }
+</style>

@@ -18,6 +18,7 @@ const mark = data.title
   .toUpperCase();
 const tags = [...new Set([data.category, ...data.technologies, ...data.platforms])].slice(0, 5);
 const ownership = data.projectType === 'studio' ? 'Продукт студии' : 'Клиентский проект';
+const projectHref = `${import.meta.env.BASE_URL}projects/${project.id}/`;
 ---
 
 <article
@@ -56,10 +57,10 @@ const ownership = data.projectType === 'studio' ? 'Продукт студии' 
       {tags.map((tag) => <li>{tag}</li>)}
     </ul>
 
-    <div class="project-foot">
-      <span>Кейс готовится</span>
+    <a class="project-foot" href={projectHref} aria-label={`Подробнее о проекте ${data.title}`}>
+      <span>Смотреть проект</span>
       <span aria-hidden="true">↗</span>
-    </div>
+    </a>
   </div>
 </article>
 
@@ -76,7 +77,8 @@ const ownership = data.projectType === 'studio' ? 'Продукт студии' 
     transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
   }
 
-  .project-card:hover {
+  .project-card:hover,
+  .project-card:focus-within {
     border-color: color-mix(in srgb, var(--project-color) 48%, transparent);
     box-shadow: 0 30px 90px color-mix(in srgb, var(--project-color) 11%, transparent);
     transform: translateY(-4px);
@@ -248,6 +250,13 @@ const ownership = data.projectType === 'studio' ? 'Продукт студии' 
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .project-foot:hover,
+  .project-foot:focus-visible {
+    color: var(--color-text);
   }
 
   .project-foot span:last-child {
