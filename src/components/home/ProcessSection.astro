@@ -1,0 +1,158 @@
+---
+import { processSteps } from '../../data/process';
+import ProcessStep from './ProcessStep.astro';
+---
+
+<section class="process-section" id="process" aria-labelledby="process-title">
+  <div class="process-inner">
+    <div class="section-intro">
+      <p class="section-label"><span>03</span> / Process</p>
+
+      <div class="intro-copy">
+        <h2 id="process-title">
+          Прозрачный процесс.<br />
+          Понятный результат <em>на каждом этапе.</em>
+        </h2>
+
+        <div class="process-principle">
+          <span>Принцип работы</span>
+          <p>
+            Двигаемся небольшими завершёнными этапами: согласовали задачу,
+            собрали, проверили и только потом переходим дальше.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-list">
+      {processSteps.map((step) => <ProcessStep step={step} />)}
+    </div>
+
+    <div class="process-summary">
+      <p>Один процесс — для MVP, нового продукта или развития существующего приложения.</p>
+      <span>Scope → Build → Verify → Launch</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-section {
+    scroll-margin-top: 24px;
+    padding: clamp(92px, 13vw, 172px) 0;
+    border-top: 1px solid var(--color-border);
+    background:
+      radial-gradient(circle at 88% 76%, rgba(83, 77, 255, 0.11), transparent 26rem),
+      var(--color-bg);
+  }
+
+  .process-inner {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+  }
+
+  .section-intro {
+    display: grid;
+    grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
+    gap: clamp(34px, 8vw, 120px);
+    margin-bottom: clamp(52px, 8vw, 96px);
+  }
+
+  .section-label {
+    margin: 8px 0 0;
+    color: #6f7c91;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .section-label span {
+    color: var(--color-accent-bright);
+  }
+
+  .intro-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.55fr);
+    gap: clamp(32px, 5vw, 74px);
+    align-items: end;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 570;
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+  }
+
+  h2 em {
+    color: var(--color-accent-bright);
+    font-style: normal;
+  }
+
+  .process-principle {
+    padding-left: 20px;
+    border-left: 1px solid var(--color-border);
+  }
+
+  .process-principle span {
+    color: var(--color-accent-bright);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .process-principle p {
+    margin: 12px 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.86rem;
+    line-height: 1.7;
+  }
+
+  .process-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 34px;
+  }
+
+  .process-summary p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+  }
+
+  .process-summary span {
+    color: #6f7c91;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .section-intro,
+    .intro-copy {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .process-principle {
+      max-width: 620px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .process-inner {
+      width: min(calc(100% - 32px), var(--container));
+    }
+
+    .process-summary {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>

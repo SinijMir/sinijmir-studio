@@ -1,0 +1,138 @@
+---
+import type { ProcessStepData } from '../../data/process';
+
+interface Props {
+  step: ProcessStepData;
+}
+
+const { step } = Astro.props;
+---
+
+<article class="process-step">
+  <div class="step-number" aria-hidden="true">
+    <span>{step.number}</span>
+    <i></i>
+  </div>
+
+  <div class="step-copy">
+    <h3>{step.title}</h3>
+    <p>{step.description}</p>
+  </div>
+
+  <div class="step-outcome">
+    <span>Результат этапа</span>
+    <p>{step.outcome}</p>
+  </div>
+</article>
+
+<style>
+  .process-step {
+    display: grid;
+    grid-template-columns: minmax(80px, 0.25fr) minmax(0, 1fr) minmax(220px, 0.55fr);
+    gap: clamp(28px, 6vw, 88px);
+    align-items: start;
+    padding: clamp(30px, 4vw, 48px) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .process-step:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .step-number {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 5px;
+  }
+
+  .step-number span {
+    color: var(--color-accent-bright);
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+  }
+
+  .step-number i {
+    width: 32px;
+    height: 1px;
+    display: block;
+    background: linear-gradient(90deg, var(--color-accent-bright), transparent);
+  }
+
+  h3 {
+    margin: 0 0 16px;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 570;
+    letter-spacing: -0.045em;
+  }
+
+  .step-copy p {
+    max-width: 640px;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.75;
+  }
+
+  .step-outcome {
+    position: relative;
+    padding: 18px 20px 18px 24px;
+    border-left: 1px solid rgba(102, 179, 255, 0.38);
+    background: linear-gradient(90deg, rgba(33, 136, 255, 0.08), transparent);
+  }
+
+  .step-outcome::before {
+    position: absolute;
+    top: 22px;
+    left: -4px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent-bright);
+    box-shadow: 0 0 15px rgba(102, 179, 255, 0.65);
+    content: '';
+  }
+
+  .step-outcome span {
+    color: #6f7c91;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .step-outcome p {
+    margin: 8px 0 0;
+    color: var(--color-text);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 880px) {
+    .process-step {
+      grid-template-columns: 70px minmax(0, 1fr);
+    }
+
+    .step-outcome {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .process-step {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .step-number,
+    .step-outcome {
+      grid-column: 1;
+    }
+
+    .step-outcome {
+      margin-top: 4px;
+    }
+  }
+</style>
