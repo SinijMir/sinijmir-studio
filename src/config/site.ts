@@ -5,9 +5,9 @@ export const siteConfig = {
     'Студия мобильной разработки, AI-интеграций, Telegram-ботов и автоматизации.',
   language: 'ru-RU',
   locale: 'ru_RU',
-  origin: 'https://sinijmir.github.io',
-  basePath: '/sinijmir-studio',
-  publicUrl: 'https://sinijmir.github.io/sinijmir-studio',
+  origin: 'https://sinijmir.ru',
+  basePath: '',
+  publicUrl: 'https://sinijmir.ru',
   logoPath: '/branding/sinijmir-mark.png',
   socialImagePath: '/og.png',
   socialImageAlt: 'SinijMir Studio — Mobile, AI, Automation',
@@ -18,9 +18,9 @@ export const siteConfig = {
 export function toPublicUrl(path = '/'): string {
   let normalizedPath = path.startsWith('/') ? path : `/${path}`;
 
-  if (normalizedPath === siteConfig.basePath) {
+  if (siteConfig.basePath && normalizedPath === siteConfig.basePath) {
     normalizedPath = '/';
-  } else if (normalizedPath.startsWith(`${siteConfig.basePath}/`)) {
+  } else if (siteConfig.basePath && normalizedPath.startsWith(`${siteConfig.basePath}/`)) {
     normalizedPath = normalizedPath.slice(siteConfig.basePath.length);
   }
 
