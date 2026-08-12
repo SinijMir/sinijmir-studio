@@ -1,6 +1,7 @@
 ---
 import { inquiryConfig } from '../../config/inquiry';
 import { telegramContact } from '../../config/contact';
+import { analyticsConfig } from '../../config/analytics';
 import '../../styles/inquiry-form.css';
 
 const privacyHref = `${import.meta.env.BASE_URL}privacy/`;
@@ -24,7 +25,13 @@ const privacyHref = `${import.meta.env.BASE_URL}privacy/`;
       </p>
     </div>
 
-    <form class="inquiry-form" data-inquiry-form data-endpoint={inquiryConfig.endpoint}>
+    <form
+      class="inquiry-form"
+      data-inquiry-form
+      data-endpoint={inquiryConfig.endpoint}
+      data-metrika-counter={analyticsConfig.yandexMetrika.counterId}
+      data-metrika-goal={analyticsConfig.yandexMetrika.inquiryGoal}
+    >
       <div class="field-row">
         <label>
           <span>Ваше имя <b aria-hidden="true">*</b></span>
@@ -112,6 +119,16 @@ const privacyHref = `${import.meta.env.BASE_URL}privacy/`;
       status.dataset.state = state;
     };
 
+    const reportSuccessfulInquiry = () => {
+      const counterId = Number(form.dataset.metrikaCounter);
+      const goal = form.dataset.metrikaGoal;
+      const metrika = Reflect.get(window, 'ym');
+
+      if (Number.isInteger(counterId) && goal && typeof metrika === 'function') {
+        metrika(counterId, 'reachGoal', goal);
+      }
+    };
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (!button || !buttonLabel || form.dataset.submitting === 'true' || !form.reportValidity()) return;
@@ -148,6 +165,7 @@ const privacyHref = `${import.meta.env.BASE_URL}privacy/`;
         form.reset();
         const requestNote = result.requestId ? ` Номер заявки: ${result.requestId}.` : '';
         setStatus(`Заявка отправлена.${requestNote} Мы свяжемся с вами.`, 'success');
+        reportSuccessfulInquiry();
       } catch (error) {
         const timedOut = error instanceof DOMException && error.name === 'AbortError';
         const message = timedOut ? 'Сервис не ответил вовремя' : 'Не удалось отправить заявку';

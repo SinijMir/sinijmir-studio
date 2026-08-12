@@ -1,5 +1,6 @@
 ---
 import SiteFooter from '../components/global/SiteFooter.astro';
+import YandexMetrika from '../components/global/YandexMetrika.astro';
 import { siteConfig, toPublicUrl } from '../config/site';
 import {
   buildStructuredData,
@@ -79,6 +80,7 @@ const jsonLd = serializeStructuredData(
     <script type="application/ld+json" set:html={jsonLd}></script>
   </head>
   <body id="top">
+    {import.meta.env.PROD && <YandexMetrika />}
     <a class="skip-link" href="#main-content">Перейти к содержимому</a>
     <slot />
     <SiteFooter />
