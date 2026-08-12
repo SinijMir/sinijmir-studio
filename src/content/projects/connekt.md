@@ -1,5 +1,6 @@
 ---
 title: ConnekT
+seoTitle: ConnekT — мобильная платформа для общения | SinijMir Studio
 tagline: Мобильная платформа для общения
 summary: Развивающийся проект мессенджера с собственной мобильной архитектурой, авторизацией, чатами и серверной частью.
 category: Mobile / Communication

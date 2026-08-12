@@ -10,6 +10,7 @@ const projects = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string().min(1),
+      seoTitle: z.string().min(1),
       tagline: z.string().min(1),
       summary: z.string().min(1),
       category: z.string().min(1),
