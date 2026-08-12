@@ -1,5 +1,5 @@
 export const inquiryConfig = {
-  endpoint: 'https://functions.yandexcloud.net/d4eg1v6n6gghqmau8ak9',
+  endpoint: 'https://functions.yandexcloud.net/d4eg1v6n6qghqmau8ak9',
   projectTypes: [
     'Мобильное приложение',
     'Telegram-бот',
