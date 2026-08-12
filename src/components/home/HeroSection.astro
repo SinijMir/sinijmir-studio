@@ -16,11 +16,14 @@ import CapabilitiesPanel from './CapabilitiesPanel.astro';
     </p>
 
     <div class="hero-actions">
-      <a class="primary-action" href="#capabilities">
+      <a class="hero-action primary-action" href="/request/">
+        Обсудить проект
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a class="hero-action secondary-action" href="#capabilities">
         Что мы создаём
         <span aria-hidden="true">↘</span>
       </a>
-      <p>От идеи и MVP<br />до релиза и развития</p>
     </div>
   </div>
 
@@ -75,36 +78,55 @@ import CapabilitiesPanel from './CapabilitiesPanel.astro';
   .hero-actions {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 12px;
     margin-top: 38px;
   }
 
-  .primary-action {
+  .hero-action {
     display: inline-flex;
     align-items: center;
-    gap: 36px;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 58px;
     padding: 15px 18px 15px 21px;
+    border: 1px solid transparent;
     border-radius: 999px;
     color: #fff;
-    background: var(--color-accent);
-    box-shadow: 0 16px 48px rgba(33, 136, 255, 0.25);
     font-size: 0.92rem;
     font-weight: 650;
     text-decoration: none;
-    transition: transform 180ms ease, background 180ms ease;
+    transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+  }
+
+  .primary-action {
+    background: var(--color-accent);
+    box-shadow: 0 16px 48px rgba(33, 136, 255, 0.25);
+  }
+
+  .secondary-action {
+    border-color: rgba(132, 204, 255, 0.36);
+    background: rgba(8, 18, 33, 0.48);
+  }
+
+  .hero-action:hover {
+    transform: translateY(-2px);
   }
 
   .primary-action:hover {
-    transform: translateY(-2px);
     background: var(--color-accent-hover);
   }
 
-  .primary-action:focus-visible {
+  .secondary-action:hover {
+    border-color: rgba(132, 204, 255, 0.68);
+    background: rgba(25, 65, 104, 0.5);
+  }
+
+  .hero-action:focus-visible {
     outline: 3px solid rgba(102, 179, 255, 0.44);
     outline-offset: 4px;
   }
 
-  .primary-action span {
+  .hero-action span {
     display: grid;
     width: 28px;
     height: 28px;
@@ -113,11 +135,8 @@ import CapabilitiesPanel from './CapabilitiesPanel.astro';
     background: rgba(255, 255, 255, 0.16);
   }
 
-  .hero-actions p {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: 0.78rem;
-    line-height: 1.5;
+  .secondary-action span {
+    background: rgba(132, 204, 255, 0.12);
   }
 
   @media (max-width: 900px) {
@@ -147,9 +166,8 @@ import CapabilitiesPanel from './CapabilitiesPanel.astro';
       gap: 18px;
     }
 
-    .primary-action {
+    .hero-action {
       width: 100%;
-      justify-content: space-between;
     }
   }
 </style>
