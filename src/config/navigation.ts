@@ -1,5 +1,3 @@
-import { telegramContact } from './contact';
-
 const baseUrl = import.meta.env.BASE_URL;
 
 export interface NavigationItem {
@@ -16,7 +14,6 @@ export const navigationItems: NavigationItem[] = [
 ];
 
 export const contactLink: NavigationItem = {
-  label: telegramContact.buttonLabel,
-  href: telegramContact.href,
-  external: true,
+  label: 'Оставить заявку',
+  href: `${baseUrl}request/`,
 };

@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { toPublicUrl } from '../config/site';
 import { getPublishedProjects } from '../lib/projects';
 
-const staticPaths = ['/', '/about/', '/services/', '/contact/', '/privacy/'];
+const staticPaths = ['/', '/about/', '/services/', '/contact/', '/request/', '/privacy/'];
 
 function escapeXml(value: string): string {
   return value

@@ -1,0 +1,127 @@
+---
+import InquiryForm from '../../components/contact/InquiryForm.astro';
+import SiteHeader from '../../components/global/SiteHeader.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Оставить заявку — SinijMir Studio"
+  description="Расскажите о задаче: мобильное приложение, Telegram-бот, AI-интеграция, MVP, автоматизация или поддержка продукта."
+  pageType="ContactPage"
+>
+  <div class="header-shell">
+    <SiteHeader />
+  </div>
+
+  <main id="main-content" tabindex="-1">
+    <section class="request-hero" aria-labelledby="request-title">
+      <div class="section-inner hero-layout">
+        <div>
+          <p class="eyebrow">Start a project / SinijMir Studio</p>
+          <h1 id="request-title">Начнём с вашей задачи.</h1>
+          <p class="lead">
+            Заполните короткую форму — заявка поступит напрямую в SinijMir Studio. Готовое техническое задание не требуется.
+          </p>
+        </div>
+
+        <ol aria-label="Что произойдёт после отправки заявки">
+          <li><span>01</span><p>Получим заявку в Telegram.</p></li>
+          <li><span>02</span><p>Свяжемся по указанному телефону.</p></li>
+          <li><span>03</span><p>Уточним задачу и предложим следующий шаг.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <InquiryForm />
+  </main>
+</BaseLayout>
+
+<style>
+  .header-shell,
+  .section-inner {
+    width: min(calc(100% - 48px), var(--container));
+    margin: 0 auto;
+  }
+
+  .request-hero {
+    padding: clamp(76px, 11vw, 140px) 0;
+    border-bottom: 1px solid var(--color-border);
+    background:
+      radial-gradient(circle at 78% 28%, rgba(33, 136, 255, 0.2), transparent 28rem),
+      linear-gradient(180deg, rgba(10, 15, 26, 0.7), rgba(5, 7, 13, 0.96));
+  }
+
+  .hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(290px, 0.75fr);
+    gap: clamp(48px, 9vw, 128px);
+    align-items: end;
+  }
+
+  .eyebrow {
+    margin: 0 0 24px;
+    color: var(--color-accent-bright);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 830px;
+    margin: 0;
+    font-size: clamp(3.6rem, 8.5vw, 7.6rem);
+    font-weight: 570;
+    letter-spacing: -0.08em;
+    line-height: 0.9;
+  }
+
+  .lead {
+    max-width: 680px;
+    margin: 32px 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.94rem;
+    line-height: 1.76;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  li span {
+    color: var(--color-accent-bright);
+    font-size: 0.62rem;
+    font-weight: 750;
+  }
+
+  li p {
+    margin: 0;
+    color: #c2cfde;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 820px) {
+    .hero-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .header-shell,
+    .section-inner {
+      width: min(calc(100% - 32px), var(--container));
+    }
+  }
+</style>
