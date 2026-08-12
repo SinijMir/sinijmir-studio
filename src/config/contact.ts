@@ -1,3 +1,5 @@
+import { metrikaGoals } from './analytics';
+
 export interface ContactChannel {
   id: string;
   type: 'messenger' | 'phone' | 'email' | 'location';
@@ -7,6 +9,7 @@ export interface ContactChannel {
   buttonLabel: string;
   external: boolean;
   primary: boolean;
+  analyticsGoal: string;
 }
 
 export const telegramContact: ContactChannel = {
@@ -18,6 +21,7 @@ export const telegramContact: ContactChannel = {
   buttonLabel: 'Обсудить проект',
   external: true,
   primary: true,
+  analyticsGoal: metrikaGoals.telegramClick,
 };
 
 export const phoneContact: ContactChannel = {
@@ -29,6 +33,7 @@ export const phoneContact: ContactChannel = {
   buttonLabel: 'Позвонить',
   external: false,
   primary: false,
+  analyticsGoal: metrikaGoals.phoneClick,
 };
 
 export const emailContact: ContactChannel = {
@@ -40,6 +45,7 @@ export const emailContact: ContactChannel = {
   buttonLabel: 'Написать на email',
   external: false,
   primary: false,
+  analyticsGoal: metrikaGoals.emailClick,
 };
 
 export const contactChannels = [telegramContact, phoneContact, emailContact] as const;

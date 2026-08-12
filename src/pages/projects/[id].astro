@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import SiteHeader from '../../components/global/SiteHeader.astro';
 import ProjectHero from '../../components/projects/ProjectHero.astro';
+import { metrikaGoalGroups } from '../../config/analytics';
 import { toPublicUrl } from '../../config/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPublishedProjects, type ProjectEntry } from '../../lib/projects';
@@ -68,7 +69,7 @@ const projectStructuredData = {
           <strong>Обсудим подходящий первый этап.</strong>
         </div>
         <nav aria-label="Действия после просмотра проекта">
-          <a class="primary-link" href={requestHref}>
+          <a class="primary-link" href={requestHref} data-metrika-goals={metrikaGoalGroups.discussProject}>
             Обсудить проект
             <span aria-hidden="true">↗</span>
           </a>

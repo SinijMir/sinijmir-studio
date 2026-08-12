@@ -23,6 +23,7 @@ const { telegramLabel = telegramContact.buttonLabel } = Astro.props;
             target={channel.external ? '_blank' : undefined}
             rel={channel.external ? 'noreferrer' : undefined}
             aria-label={`${channel.service}: ${channel.handle}`}
+            data-metrika-goals={channel.analyticsGoal}
           >
             <ContactIcon type={channel.type} />
             <span class="contact-copy">
@@ -43,6 +44,7 @@ const { telegramLabel = telegramContact.buttonLabel } = Astro.props;
       target="_blank"
       rel="noreferrer"
       aria-label={`${telegramLabel} в Telegram`}
+      data-metrika-goals={telegramContact.analyticsGoal}
     >
       {telegramLabel}
       <span aria-hidden="true">↗</span>
@@ -51,6 +53,7 @@ const { telegramLabel = telegramContact.buttonLabel } = Astro.props;
       class="action action-secondary"
       href={phoneContact.href}
       aria-label={`Позвонить по номеру ${phoneContact.handle}`}
+      data-metrika-goals={phoneContact.analyticsGoal}
     >
       {phoneContact.buttonLabel}
       <span aria-hidden="true">↗</span>

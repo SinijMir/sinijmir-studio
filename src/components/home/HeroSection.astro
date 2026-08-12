@@ -1,4 +1,5 @@
 ---
+import { metrikaGoalGroups } from '../../config/analytics';
 import CapabilitiesPanel from './CapabilitiesPanel.astro';
 ---
 
@@ -16,7 +17,7 @@ import CapabilitiesPanel from './CapabilitiesPanel.astro';
     </p>
 
     <div class="hero-actions">
-      <a class="hero-action primary-action" href="/request/#inquiry-form">
+      <a class="hero-action primary-action" href="/request/#inquiry-form" data-metrika-goals={metrikaGoalGroups.discussProject}>
         Обсудить проект
         <span aria-hidden="true">↗</span>
       </a>

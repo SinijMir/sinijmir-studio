@@ -27,6 +27,20 @@ const counterId = analyticsConfig.yandexMetrika.counterId;
     accurateTrackBounce: true,
     trackLinks: true,
   });
+
+  window.sinijmirReachGoal = function (goal) {
+    if (typeof goal !== 'string' || !goal.trim()) return;
+    ym(counterId, 'reachGoal', goal.trim());
+  };
+
+  document.addEventListener('click', function (event) {
+    var source = event.target instanceof Element ? event.target : null;
+    var target = source ? source.closest('[data-metrika-goals]') : null;
+    var goalList = target ? target.getAttribute('data-metrika-goals') : '';
+
+    if (!goalList) return;
+    goalList.split(/\s+/).forEach(window.sinijmirReachGoal);
+  });
 </script>
 <noscript>
   <div>

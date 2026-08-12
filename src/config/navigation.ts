@@ -1,9 +1,12 @@
+import { metrikaGoals } from './analytics';
+
 const baseUrl = import.meta.env.BASE_URL;
 
 export interface NavigationItem {
   label: string;
   href: string;
   external?: boolean;
+  analyticsGoal?: string;
 }
 
 export const navigationItems: NavigationItem[] = [
@@ -16,4 +19,5 @@ export const navigationItems: NavigationItem[] = [
 export const contactLink: NavigationItem = {
   label: 'Оставить заявку',
   href: `${baseUrl}request/#inquiry-form`,
+  analyticsGoal: metrikaGoals.requestOpen,
 };

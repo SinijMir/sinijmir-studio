@@ -1,5 +1,6 @@
 ---
 import SiteHeader from '../../components/global/SiteHeader.astro';
+import { metrikaGoalGroups } from '../../config/analytics';
 import ServiceDetailCard from '../../components/services/ServiceDetailCard.astro';
 import { toPublicUrl } from '../../config/site';
 import { services } from '../../data/services';
@@ -67,7 +68,7 @@ const serviceCatalog = {
           <li><span>03</span><p>Согласовываем границы работы до начала реализации.</p></li>
         </ol>
 
-        <a href={requestHref}>Обсудить проект <span aria-hidden="true">↗</span></a>
+        <a href={requestHref} data-metrika-goals={metrikaGoalGroups.discussProject}>Обсудить проект <span aria-hidden="true">↗</span></a>
       </div>
     </section>
   </main>

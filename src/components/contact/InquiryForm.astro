@@ -1,7 +1,7 @@
 ---
 import { inquiryConfig } from '../../config/inquiry';
 import { telegramContact } from '../../config/contact';
-import { analyticsConfig } from '../../config/analytics';
+import { metrikaGoals } from '../../config/analytics';
 import '../../styles/inquiry-form.css';
 
 const privacyHref = `${import.meta.env.BASE_URL}privacy/`;
@@ -21,7 +21,7 @@ const privacyHref = `${import.meta.env.BASE_URL}privacy/`;
         <li>Никаких рекламных рассылок</li>
       </ul>
       <p class="alternative">
-        Удобнее написать самостоятельно? <a href={telegramContact.href} target="_blank" rel="noreferrer">Откройте Telegram ↗</a>
+        Удобнее написать самостоятельно? <a href={telegramContact.href} target="_blank" rel="noreferrer" data-metrika-goals={telegramContact.analyticsGoal}>Откройте Telegram ↗</a>
       </p>
     </div>
 
@@ -29,8 +29,7 @@ const privacyHref = `${import.meta.env.BASE_URL}privacy/`;
       class="inquiry-form"
       data-inquiry-form
       data-endpoint={inquiryConfig.endpoint}
-      data-metrika-counter={analyticsConfig.yandexMetrika.counterId}
-      data-metrika-goal={analyticsConfig.yandexMetrika.inquiryGoal}
+      data-metrika-success-goal={metrikaGoals.inquirySuccess}
     >
       <div class="field-row">
         <label>
@@ -120,12 +119,11 @@ const privacyHref = `${import.meta.env.BASE_URL}privacy/`;
     };
 
     const reportSuccessfulInquiry = () => {
-      const counterId = Number(form.dataset.metrikaCounter);
-      const goal = form.dataset.metrikaGoal;
-      const metrika = Reflect.get(window, 'ym');
+      const goal = form.dataset.metrikaSuccessGoal;
+      const reportGoal = Reflect.get(window, 'sinijmirReachGoal');
 
-      if (Number.isInteger(counterId) && goal && typeof metrika === 'function') {
-        metrika(counterId, 'reachGoal', goal);
+      if (goal && typeof reportGoal === 'function') {
+        reportGoal(goal);
       }
     };
 

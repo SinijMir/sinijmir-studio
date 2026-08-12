@@ -28,6 +28,7 @@ import { contactLink, navigationItems } from '../../config/navigation';
       href={contactLink.href}
       target={contactLink.external ? '_blank' : undefined}
       rel={contactLink.external ? 'noreferrer' : undefined}
+      data-metrika-goals={contactLink.analyticsGoal}
     >
       {contactLink.label}
       <span aria-hidden="true">↗</span>
