@@ -22,7 +22,6 @@ const counterId = analyticsConfig.yandexMetrika.counterId;
   ym(counterId, 'init', {
     ssr: true,
     clickmap: true,
-    ecommerce: 'dataLayer',
     referrer: document.referrer,
     url: location.href,
     accurateTrackBounce: true,
