@@ -15,5 +15,5 @@ export const navigationItems: NavigationItem[] = [
 
 export const contactLink: NavigationItem = {
   label: 'Оставить заявку',
-  href: `${baseUrl}request/`,
+  href: `${baseUrl}request/#inquiry-form`,
 };

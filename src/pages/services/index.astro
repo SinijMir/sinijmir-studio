@@ -5,7 +5,7 @@ import { toPublicUrl } from '../../config/site';
 import { services } from '../../data/services';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const contactHref = `${import.meta.env.BASE_URL}contact/`;
+const requestHref = `${import.meta.env.BASE_URL}request/#inquiry-form`;
 const organizationId = `${toPublicUrl('/')}#organization`;
 const serviceCatalog = {
   '@type': 'ItemList',
@@ -67,7 +67,7 @@ const serviceCatalog = {
           <li><span>03</span><p>Согласовываем границы работы до начала реализации.</p></li>
         </ol>
 
-        <a href={contactHref}>Перейти к контактам <span aria-hidden="true">↗</span></a>
+        <a href={requestHref}>Обсудить проект <span aria-hidden="true">↗</span></a>
       </div>
     </section>
   </main>

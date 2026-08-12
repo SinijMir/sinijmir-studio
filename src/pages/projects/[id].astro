@@ -22,6 +22,7 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const homeProjectsHref = `${import.meta.env.BASE_URL}#projects`;
+const requestHref = `${import.meta.env.BASE_URL}request/#inquiry-form`;
 const projectUrl = toPublicUrl(`/projects/${project.id}/`);
 const projectStructuredData = {
   '@type': 'CreativeWork',
@@ -60,13 +61,19 @@ const projectStructuredData = {
       </div>
     </section>
 
-    <section class="project-return" aria-label="Возврат к портфолио">
+    <section class="project-return" aria-label="Следующий шаг после просмотра проекта">
       <div>
-        <p>Следите за развитием продуктов студии</p>
-        <a href={homeProjectsHref}>
-          Вернуться ко всем проектам
-          <span aria-hidden="true">↗</span>
-        </a>
+        <div>
+          <p>Есть похожая задача?</p>
+          <strong>Обсудим подходящий первый этап.</strong>
+        </div>
+        <nav aria-label="Действия после просмотра проекта">
+          <a class="primary-link" href={requestHref}>
+            Обсудить проект
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="secondary-link" href={homeProjectsHref}>Все проекты</a>
+        </nav>
       </div>
     </section>
   </main>
@@ -185,24 +192,58 @@ const projectStructuredData = {
     font-size: 0.78rem;
   }
 
+  .project-return strong {
+    display: block;
+    margin-top: 8px;
+    color: var(--color-text);
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    font-weight: 590;
+    letter-spacing: -0.03em;
+  }
+
+  .project-return nav,
   .project-return a {
     display: inline-flex;
     align-items: center;
+  }
+
+  .project-return nav {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .project-return a {
     gap: 18px;
-    color: var(--color-text);
-    font-size: clamp(1rem, 2vw, 1.35rem);
+    padding: 14px 20px;
+    border-radius: 999px;
+    font-size: 0.78rem;
     font-weight: 650;
-    letter-spacing: -0.03em;
     text-decoration: none;
   }
 
-  .project-return a span {
-    color: var(--color-accent-bright);
+  .primary-link {
+    color: #fff;
+    background: var(--color-accent);
   }
 
-  .project-return a:hover,
-  .project-return a:focus-visible {
+  .primary-link span {
+    color: #fff;
+  }
+
+  .secondary-link {
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .project-return .primary-link:hover,
+  .project-return .primary-link:focus-visible {
+    background: var(--color-accent-hover);
+  }
+
+  .project-return .secondary-link:hover,
+  .project-return .secondary-link:focus-visible {
     color: var(--color-accent-bright);
+    border-color: rgba(102, 179, 255, 0.58);
   }
 
   @media (max-width: 760px) {
