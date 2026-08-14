@@ -22,7 +22,6 @@ const { telegramLabel = telegramContact.buttonLabel } = Astro.props;
             href={channel.href}
             target={channel.external ? '_blank' : undefined}
             rel={channel.external ? 'noreferrer' : undefined}
-            aria-label={`${channel.service}: ${channel.handle}`}
             data-metrika-goals={channel.analyticsGoal}
           >
             <ContactIcon type={channel.type} />

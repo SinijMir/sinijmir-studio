@@ -12,6 +12,11 @@ interface StructuredDataOptions {
   extra?: StructuredDataNode[];
 }
 
+interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
+
 export function buildStructuredData({
   title,
   description,
@@ -61,6 +66,18 @@ export function buildStructuredData({
       },
       ...extra,
     ],
+  };
+}
+
+export function buildBreadcrumbList(items: BreadcrumbItem[]): StructuredDataNode {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: toPublicUrl(item.path),
+    })),
   };
 }
 

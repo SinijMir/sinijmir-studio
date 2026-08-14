@@ -9,6 +9,8 @@ export const siteConfig = {
   basePath: '',
   publicUrl: 'https://sinijmir.ru',
   logoPath: '/branding/sinijmir-mark.png',
+  faviconPath: '/branding/sinijmir-mark-64.png',
+  appleTouchIconPath: '/branding/sinijmir-mark-160.png',
   socialImagePath: '/og.png',
   socialImageAlt: 'SinijMir Studio — Mobile, AI, Automation',
   telegramUrl: 'https://t.me/sinijmir',

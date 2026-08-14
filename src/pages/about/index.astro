@@ -4,14 +4,20 @@ import StudioPrincipleCard from '../../components/about/StudioPrincipleCard.astr
 import SiteHeader from '../../components/global/SiteHeader.astro';
 import { developmentTools, studioPrinciples } from '../../data/studio';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { buildBreadcrumbList } from '../../lib/structured-data';
 
 const projectsHref = `${import.meta.env.BASE_URL}#projects`;
+const breadcrumbs = buildBreadcrumbList([
+  { name: 'Главная', path: '/' },
+  { name: 'О студии', path: '/about/' },
+]);
 ---
 
 <BaseLayout
   title="О студии — SinijMir Studio"
   description="SinijMir Studio — независимая студия мобильной разработки, серверных решений, AI-интеграций и автоматизации."
   pageType="AboutPage"
+  structuredData={[breadcrumbs]}
 >
   <div class="header-shell">
     <SiteHeader />

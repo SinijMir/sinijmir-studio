@@ -6,6 +6,7 @@ import { metrikaGoalGroups } from '../../config/analytics';
 import { toPublicUrl } from '../../config/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPublishedProjects, type ProjectEntry } from '../../lib/projects';
+import { buildBreadcrumbList } from '../../lib/structured-data';
 
 export async function getStaticPaths() {
   const projects = await getPublishedProjects();
@@ -35,12 +36,17 @@ const projectStructuredData = {
   url: projectUrl,
   creator: { '@id': `${toPublicUrl('/')}#organization` },
 };
+const breadcrumbs = buildBreadcrumbList([
+  { name: 'Главная', path: '/' },
+  { name: 'Проекты', path: '/#projects' },
+  { name: project.data.title, path: `/projects/${project.id}/` },
+]);
 ---
 
 <BaseLayout
   title={project.data.seoTitle}
   description={project.data.summary}
-  structuredData={[projectStructuredData]}
+  structuredData={[projectStructuredData, breadcrumbs]}
 >
   <div class="header-shell">
     <SiteHeader />
