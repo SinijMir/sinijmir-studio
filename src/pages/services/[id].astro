@@ -1,0 +1,121 @@
+---
+import { render } from 'astro:content';
+import SiteHeader from '../../components/global/SiteHeader.astro';
+import { metrikaGoalGroups } from '../../config/analytics';
+import { toPublicUrl } from '../../config/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/service-page.css';
+import { getPublishedServices, type ServiceEntry } from '../../lib/services';
+import { buildBreadcrumbList } from '../../lib/structured-data';
+
+export async function getStaticPaths() {
+  const services = await getPublishedServices();
+
+  return services.map((service) => ({
+    params: { id: service.id },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: ServiceEntry;
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+const servicePath = `/services/${service.id}/`;
+const serviceUrl = toPublicUrl(servicePath);
+const servicesHref = `${import.meta.env.BASE_URL}services/`;
+const requestHref = `${import.meta.env.BASE_URL}request/#inquiry-form`;
+const structuredService = {
+  '@type': 'Service',
+  '@id': `${serviceUrl}#service`,
+  name: service.data.title,
+  description: service.data.description,
+  serviceType: service.data.title,
+  url: serviceUrl,
+  provider: { '@id': `${toPublicUrl('/')}#organization` },
+};
+const breadcrumbs = buildBreadcrumbList([
+  { name: 'Главная', path: '/' },
+  { name: 'Услуги', path: '/services/' },
+  { name: service.data.title, path: servicePath },
+]);
+---
+
+<BaseLayout
+  title={service.data.seoTitle}
+  description={service.data.description}
+  structuredData={[structuredService, breadcrumbs]}
+>
+  <div class="header-shell">
+    <SiteHeader />
+  </div>
+
+  <main id="main-content" tabindex="-1">
+    <section class="service-hero" aria-labelledby="service-title">
+      <div class="section-inner">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a href={servicesHref}>Услуги</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{service.data.title}</span>
+        </nav>
+
+        <p class="eyebrow">{service.data.eyebrow}</p>
+        <div class="hero-grid">
+          <div>
+            <h1 id="service-title">{service.data.title}</h1>
+            <p class="lead">{service.data.lead}</p>
+          </div>
+          <ul class="technologies" aria-label="Технологии направления">
+            {service.data.technologies.map((technology) => <li>{technology}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-overview" aria-label="Результат и подходящие задачи">
+      <div class="section-inner overview-grid">
+        <article>
+          <p class="section-label">Что можно получить</p>
+          <ul>
+            {service.data.outcomes.map((outcome) => <li>{outcome}</li>)}
+          </ul>
+        </article>
+        <article>
+          <p class="section-label">Подходит для</p>
+          <ul>
+            {service.data.bestFor.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="service-story" aria-label={`Описание услуги ${service.data.title}`}>
+      <div class="story-inner">
+        <aside>
+          <span>Подход</span>
+          <p>Сначала определяем полезный результат и границы этапа, затем выбираем реализацию.</p>
+        </aside>
+        <article class="content">
+          <Content />
+        </article>
+      </div>
+    </section>
+
+    <section class="service-cta" aria-labelledby="service-cta-title">
+      <div class="section-inner cta-card">
+        <div>
+          <p>Есть задача по этому направлению?</p>
+          <h2 id="service-cta-title">Обсудим исходную точку и подходящий первый этап.</h2>
+        </div>
+        <nav aria-label="Действия после описания услуги">
+          <a class="primary-link" href={requestHref} data-metrika-goals={metrikaGoalGroups.discussProject}>
+            Обсудить проект <span aria-hidden="true">↗</span>
+          </a>
+          <a class="secondary-link" href={servicesHref}>Все услуги</a>
+        </nav>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { service } = Astro.props;
+const serviceHref = service.href ? `${import.meta.env.BASE_URL}${service.href.replace(/^\//, '')}` : null;
 ---
 
 <article class:list={['service-detail', `service-detail--${service.accent}`]}>
@@ -17,6 +18,9 @@ const { service } = Astro.props;
   <div class="service-copy">
     <h2>{service.title}</h2>
     <p>{service.description}</p>
+    {serviceHref && (
+      <a class="service-link" href={serviceHref}>Подробнее о направлении <span aria-hidden="true">↗</span></a>
+    )}
   </div>
 
   <div class="service-details">
@@ -96,6 +100,22 @@ const { service } = Astro.props;
     color: var(--color-text-muted);
     font-size: 0.86rem;
     line-height: 1.72;
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    color: var(--service-color);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .service-link:hover,
+  .service-link:focus-visible {
+    color: var(--color-text);
   }
 
   .service-details {

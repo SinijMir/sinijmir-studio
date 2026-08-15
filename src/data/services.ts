@@ -8,6 +8,7 @@ export interface Service {
   deliverables: string[];
   bestFor: string;
   accent: ServiceAccent;
+  href?: string;
 }
 
 export const services: Service[] = [
@@ -20,6 +21,7 @@ export const services: Service[] = [
     deliverables: ['Прототип и MVP', 'Flutter-приложение', 'Подготовка к публикации'],
     bestFor: 'Новых продуктов и развития существующих мобильных приложений.',
     accent: 'cyan',
+    href: '/services/flutter-development/',
   },
   {
     number: '02',
@@ -30,6 +32,7 @@ export const services: Service[] = [
     deliverables: ['AI-функции в продукте', 'Интеграция внешних API', 'Автоматизация сценариев'],
     bestFor: 'Задач, где AI должен давать измеримую пользу, а не существовать ради тренда.',
     accent: 'blue',
+    href: '/services/ai-integration/',
   },
   {
     number: '03',
@@ -40,6 +43,7 @@ export const services: Service[] = [
     deliverables: ['Сценарии Telegram-бота', 'REST API', 'Интеграция данных и логики'],
     bestFor: 'Сервисов, которым нужны автоматизированное общение и серверная основа.',
     accent: 'violet',
+    href: '/services/telegram-bots/',
   },
   {
     number: '04',

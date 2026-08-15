@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { service } = Astro.props;
+const serviceHref = service.href ? `${import.meta.env.BASE_URL}${service.href.replace(/^\//, '')}` : null;
 ---
 
 <article class:list={['service-card', `service-card--${service.accent}`]}>
@@ -22,6 +23,9 @@ const { service } = Astro.props;
   <ul aria-label={`Технологии: ${service.title}`}>
     {service.technologies.map((technology) => <li>{technology}</li>)}
   </ul>
+  {serviceHref && (
+    <a class="service-link" href={serviceHref}>Подробнее <span aria-hidden="true">↗</span></a>
+  )}
 </article>
 
 <style>
@@ -136,6 +140,21 @@ const { service } = Astro.props;
     font-size: 0.64rem;
     font-weight: 650;
     letter-spacing: 0.04em;
+  }
+
+  .service-link {
+    position: relative;
+    align-self: flex-start;
+    margin-top: 22px;
+    color: var(--service-color);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .service-link:hover,
+  .service-link:focus-visible {
+    color: var(--color-text);
   }
 
   @media (max-width: 620px) {
