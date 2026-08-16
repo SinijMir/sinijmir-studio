@@ -145,6 +145,19 @@ const breadcrumbs = buildBreadcrumbList([
     line-height: 1.85;
   }
 
+  .content :global(a) {
+    color: var(--color-accent-bright);
+    text-decoration-color: rgba(102, 179, 255, 0.52);
+    text-underline-offset: 0.22em;
+    transition: color 180ms ease, text-decoration-color 180ms ease;
+  }
+
+  .content :global(a:hover),
+  .content :global(a:focus-visible) {
+    color: #a8d3ff;
+    text-decoration-color: currentColor;
+  }
+
   .content :global(ul) {
     display: grid;
     gap: 12px;
